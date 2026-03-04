@@ -8,24 +8,26 @@
     "net10.0": []
   },
   "packageFolders": {
-    "/home/james/.nuget/packages/": {}
+    "C:\\Users\\lukeb\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/james/code/UKHSA/UKHSA.csproj",
+      "projectUniqueName": "C:\\Users\\lukeb\\Documents\\GitHub\\UKHSA\\UKHSA.csproj",
       "projectName": "UKHSA",
-      "projectPath": "/home/james/code/UKHSA/UKHSA.csproj",
-      "packagesPath": "/home/james/.nuget/packages/",
-      "outputPath": "/home/james/code/UKHSA/obj/",
+      "projectPath": "C:\\Users\\lukeb\\Documents\\GitHub\\UKHSA\\UKHSA.csproj",
+      "packagesPath": "C:\\Users\\lukeb\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lukeb\\Documents\\GitHub\\UKHSA\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/james/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\lukeb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -68,7 +70,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
