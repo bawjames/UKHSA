@@ -12,12 +12,69 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+.container{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.footer-container{
+  background-color: #005EB8;
+}
+
+
+
+.login-container{
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #E8EDEE ;
+}
+
+
+
+
+.navbar-container{
+  background-color:#005EB8;
+}
+
+.navbar-items {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-link{
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.nav-header{
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.nav-link:hover {
+  background-color:white;
+  color:black;
+}
+
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
+  font-family: Helvetica, Arial, sans-serif;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
   margin-bottom: 60px;
 }
 
@@ -28,4 +85,9 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+nav {
+  background-color: #005EB8;
+  color: #FFFFFF !important;
 }
