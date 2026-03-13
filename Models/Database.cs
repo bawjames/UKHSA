@@ -1,6 +1,5 @@
 namespace UKHSA.Models;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
 public class User : IdentityUser
@@ -9,10 +8,9 @@ public class User : IdentityUser
 
     public required string Forename { get; set; }
     public required string Surname { get; set; }
-    public required List<Role> Roles { get; set; }
+    public Role Role { get; set; } = Role.Standard;
 
-    [InverseProperty("User")]
-    public required List<Request> Requests { get; set; }
+    public List<Request> Requests { get; set; } = [];
 }
 
 public enum Role
@@ -27,12 +25,13 @@ public class Request
     public int Id { get; set; }
     public DateTime RequestDateTime { get; set; }
 
-    [ForeignKey("Approval")]
-    public int ApprovalId { get; set; }
-    [ForeignKey("User")]
-    public required int UserId { get; set; }
-    [ForeignKey("Dataset")]
+    public string? UserId { get; set; }
+    public User? User { get; set; }
+
     public required int DatasetId { get; set; }
+    public required Dataset Dataset { get; set; }
+
+    public Approval? Approval { get; set; }
 }
 
 public class Dataset
@@ -42,16 +41,17 @@ public class Dataset
     public required string Description { get; set; }
     public int AccessLevel { get; set; }
 
-    [InverseProperty("Dataset")]
-    public required List<Request> Requests { get; set; }
+    public List<Request> Requests { get; set; } = [];
  }
 
 public class Approval
 {
+    public int Id { get; set; }
     public bool Approved { get; set; }
     public DateTime ApprovedDateTime { get; set; }
     public string? RejectedReason { get; set; }
 
-    [InverseProperty("Approval")]
-    public required Request Requests { get; set; }
+    public int RequestId { get; set; }
+    [ForeignKey(nameof(RequestId))]
+    public required Request Request { get; set; }
 }
