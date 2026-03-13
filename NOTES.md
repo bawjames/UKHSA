@@ -1,5 +1,11 @@
 # Notes
 
+## For performing migrations
+```
+$ dotnet ef migrations add MigrationName
+$ dotnet ef database update
+```
+
 ## Feedback (week 1)
 + would be nice to be able to have an option to say why a request was rejected
 + when a request for non-sensitive data comes through should be automatically approved
