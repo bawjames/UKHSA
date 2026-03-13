@@ -7,4 +7,4 @@ RUN dotnet restore
 COPY . .
 
 RUN dotnet clean
-ENTRYPOINT ["dotnet", "watch", "run", "--no-launch-profile", "--urls", "http://0.0.0.0:8080"]
+ENTRYPOINT ["dotnet", "watch", "run"]
