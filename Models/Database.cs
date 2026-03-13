@@ -1,10 +1,11 @@
 namespace UKHSA.Models;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
-public class User
+public class User : IdentityUser
 {
-    public int Id { get; set; }
-    public Role Role { get; set; }
+    public List<Role> Role { get; set; }
 }
 
 public enum Role
