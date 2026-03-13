@@ -3,6 +3,9 @@ WORKDIR /App
 
 COPY . ./
 RUN dotnet restore
+RUN dotnet publish -o out
 
-RUN dotnet clean
-ENTRYPOINT ["dotnet", "watch", "run", "--no-launch-profile"]
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
+WORKDIR /App
+COPY --from=build /App/out .
+ENTRYPOINT ["dotnet", "UKHSA.dll"]

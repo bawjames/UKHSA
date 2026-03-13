@@ -1,11 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Hosting.StaticWebAssets;
 using UKHSA.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
-
-StaticWebAssetsLoader.UseStaticWebAssets(builder.Environment, builder.Configuration);
 
 builder.Services.AddDbContext<UKHSA_DbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
