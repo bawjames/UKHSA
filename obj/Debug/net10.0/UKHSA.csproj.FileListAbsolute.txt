@@ -91,4 +91,11 @@ C:\Users\lukeb\Documents\GitHub\UKHSA\obj\Debug\net10.0\refint\UKHSA.dll
 C:\Users\lukeb\Documents\GitHub\UKHSA\obj\Debug\net10.0\UKHSA.pdb
 C:\Users\lukeb\Documents\GitHub\UKHSA\obj\Debug\net10.0\UKHSA.genruntimeconfig.cache
 C:\Users\lukeb\Documents\GitHub\UKHSA\obj\Debug\net10.0\ref\UKHSA.dll
-C:\Users\lukeb\Documents\GitHub\UKHSA\obj\Debug\net10.0\compressed\lpkzaqsbo7-{0}-d6okbou92d-d6okbou92d.gz
+C:\Users\lukeb\Documents\GitHub\UKHSA\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\lukeb\Documents\GitHub\UKHSA\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\lukeb\Documents\GitHub\UKHSA\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\lukeb\Documents\GitHub\UKHSA\bin\Debug\net10.0\Npgsql.dll
+C:\Users\lukeb\Documents\GitHub\UKHSA\bin\Debug\net10.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\lukeb\Documents\GitHub\UKHSA\obj\Debug\net10.0\UKHSA.csproj.AssemblyReference.cache
+C:\Users\lukeb\Documents\GitHub\UKHSA\obj\Debug\net10.0\UKHSA.csproj.Up2Date
+C:\Users\lukeb\Documents\GitHub\UKHSA\obj\Debug\net10.0\compressed\lpkzaqsbo7-{0}-vshwece83v-vshwece83v.gz

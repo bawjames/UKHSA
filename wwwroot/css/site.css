@@ -32,8 +32,41 @@ html {
   background-color: #E8EDEE ;
 }
 
+.input-box{
+  display:  block;
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - 22px);
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+  border: 1px solid #FFFFFF;
+  border-radius: 4px;
+}
 
+.input-button{
+  display:  block;
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+  background-color: #005EB8;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+}
 
+ .input-button:hover{
+  display:  block;
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+  background-color: #0072CE;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 3px 3px #999999;
+  transition: box-shadow 0.2s, background-color 0.2s;
+}
 
 .navbar-container{
   background-color:#005EB8;
@@ -90,4 +123,40 @@ body {
 nav {
   background-color: #005EB8;
   color: #FFFFFF !important;
+}
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+thead tr{
+  background-color: grey;
+  color: #ffffff;
+  text-align: left; 
+}
+
+th,
+td {
+  padding: 12px 15px;
+}
+
+tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+  border-bottom: 2px solid blueviolet;
 }
