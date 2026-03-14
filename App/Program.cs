@@ -39,7 +39,7 @@ app.MapStaticAssets();
 // Redirect from root
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}")
+    pattern: "{controller=User}/{action=Home}/{id?}")
     .WithStaticAssets();
 
 app.Run();
