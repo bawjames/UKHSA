@@ -7,11 +7,17 @@
 ### For Development
 1. Ensure you have Docker installed, with docker-compose and docker-buildx
 2. Clone this repository
-3. In the repository root directory, create a `.env` file with the following structure:
+3. In the repository root directory, create a `.env`:
     ```
     POSTGRES_PASSWORD=choose-a-strong-password
     DATA_PROTECTION_PASSWORD=choose-a-different-strong-password
     ```
-4. `$ docker compose up`
+4. In your terminal:
+    ```$ docker compose up -wd```
+
+To stop the docker container:
+```
+$ docker compose down
+```
 
 <!-- Need to update this when we create proper releases -->
