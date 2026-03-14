@@ -4,9 +4,8 @@
 
 + Install [Docker](https://docs.docker.com/desktop/) using the instructions for your operating system.
 + Download the Docker image from [Releases](https://github.com/bawjames/UKHSA/releases).
-+ ?
 
-### For development
+### For Development
 
 + Ensure you have Docker installed, with docker-compose and docker-buildx.
 + Clone this repository
