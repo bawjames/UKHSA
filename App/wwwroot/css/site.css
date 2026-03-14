@@ -1,3 +1,17 @@
+:root {
+  --primary-blue: #005EB8;
+  --secondary-blue: #0072CE;
+  --focus-blue: #258cfb;
+  --button-green: #006747;
+  --button-hover-green: #78BE20;
+
+  --light-grey: #E8EDEE;
+  --medium-grey: #999999;
+
+  --white: #FFFFFF;
+  --black: #000000;
+}
+
 html {
   font-size: 14px;
 }
@@ -9,7 +23,7 @@ html {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+  box-shadow: 0 0 0 0.1rem var(--white), 0 0 0 0.25rem var(--focus-blue);
 }
 
 .container{
@@ -18,67 +32,63 @@ html {
   min-height: 100vh;
 }
 
-
 .footer-container{
-  background-color: #005EB8;
+  background-color: var(--primary-blue);
 }
-
-
 
 .login-container{
   width: 300px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #E8EDEE ;
+  background-color: var(--light-grey);
 }
 
 .input-box{
-  display:  block;
+  display: block;
   margin-left: auto;
   margin-right: auto;
   width: calc(100% - 22px);
   padding: 10px;
   text-align: center;
   margin-bottom: 10px;
-  border: 1px solid #FFFFFF;
+  border: 1px solid var(--white);
   border-radius: 4px;
 }
 
 .input-button{
-  display:  block;
+  display: block;
   margin: auto;
   width: 100%;
   padding: 10px;
-  background-color: #006747;
-  color: #FFFFFF;
+  background-color: var(--button-green);
+  color: var(--white);
   border: none;
   cursor: pointer;
   box-shadow: none;
   transition: box-shadow 0.4s, background-color 0.4s;
 }
 
- .input-button:hover{
-  display:  block;
+.input-button:hover{
+  display: block;
   margin: auto;
   width: 100%;
   padding: 10px;
-  background-color: #78BE20;
-  color: #FFFFFF;
+  background-color: var(--button-hover-green);
+  color: var(--white);
   border: none;
   cursor: pointer;
-  box-shadow: 0px 3px 3px #999999;
+  box-shadow: 0px 3px 3px var(--medium-grey);
   transition: box-shadow 0.2s, background-color 0.2s;
 }
 
-
 select{
   -webkit-border-radius: 0;
-  background-color: #005EB8; /* Fallback color if gradients are not supported */
+  background-color: var(--primary-blue);
   background-position: center right;
   background-repeat: no-repeat;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   border: none;
-  color: #FFFFFF;
+  color: var(--white);
   font-size: inherit;
   margin: 0;
   overflow: hidden;
@@ -89,7 +99,7 @@ select{
 }
 
 .navbar-container{
-  background-color:#005EB8;
+  background-color: var(--primary-blue);
 }
 
 .navbar-items {
@@ -101,7 +111,7 @@ select{
 
 .nav-link{
   display: block;
-  color: white;
+  color: var(--white);
   padding: 14px 16px;
   text-decoration: none;
   transition: background-color 0.3s;
@@ -109,13 +119,14 @@ select{
 
 .nav-header{
   display: block;
-  color: white;
+  color: var(--white);
   padding: 14px 16px;
   text-decoration: none;
 }
+
 .nav-link:hover {
-  background-color:#0072CE;
-  color:#FFFFFF;
+  background-color: var(--secondary-blue);
+  color: var(--white);
 }
 
 html {
@@ -131,24 +142,25 @@ body {
   margin-bottom: 60px;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
   text-align: end;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
 
 nav {
-  background-color: #005EB8;
-  color: #FFFFFF !important;
+  background-color: var(--primary-blue);
+  color: var(--white) !important;
 }
 
 .table-container{
   margin: 25px 3em; 
 }
-
 
 table {
   width: 100%;
@@ -158,9 +170,9 @@ table {
   overflow: hidden;
 }
 
-  thead tr{
-  background-color: #e8edee ;
-  color: #000000;
+thead tr{
+  background-color: var(--light-grey);
+  color: var(--black);
   text-align: left; 
 }
 
@@ -169,12 +181,13 @@ th, td {
 }
 
 tbody tr:nth-of-type(even) {
-  background-color: #E8EDEE;
+  background-color: var(--light-grey);
 }
 
 tbody tr:last-of-type {
-  border-bottom: 2px solid #005EB8;
+  border-bottom: 2px solid var(--primary-blue);
 }
+
 thead tr:last-of-type {
-  border-bottom: 2px solid #005EB8;
+  border-bottom: 2px solid var(--primary-blue);
 }
