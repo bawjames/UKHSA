@@ -1,0 +1,10 @@
+# Ignore everything,
+*
+
+# except App/ and Dockerfile,
+!App/
+!Dockerfile
+
+# and ignore obj/ and bin/ anywhere.
+**/obj/
+**/bin/
