@@ -22,9 +22,9 @@ services:
       - 8080:8080
     environment:
       ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=UKHSA;Username=postgres;Password=${POSTGRES_PASSWORD}
-      ASPNETCORE_ENVIRONMENT: Production
       DataProtection__EncryptWithPassword: true
       DataProtection__Password: ${DATA_PROTECTION_PASSWORD}
+      ASPNETCORE_ENVIRONMENT: Production
     volumes:
       - aspnet_keys:/root/.aspnet/DataProtection-Keys
     depends_on:

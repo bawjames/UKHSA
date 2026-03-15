@@ -2,46 +2,71 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using UKHSA.Controllers;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace UKHSA;
 
-// Connect to Postgres
-builder.Services.AddDbContext<UKHSA_DbContext>(options =>
-        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
-                                              );
-
-// Configure Login
-builder.Services.AddIdentity<UKHSA.Models.User, IdentityRole>()
-.AddEntityFrameworkStores<UKHSA_DbContext>()
-.AddDefaultTokenProviders();
-
-builder.Services.AddAuthentication()
-.AddCookie(options => options.LoginPath = "/Account/Login");
-
-builder.Services.AddControllersWithViews();
-
-var app = builder.Build();
-
-// Perform EFCore database migrations
-using (var scope = app.Services.CreateScope())
+class Program
 {
-    var dbContext = scope.ServiceProvider.GetRequiredService<UKHSA_DbContext>();
-    var pendingMigrations = dbContext.Database.GetPendingMigrations();
+    public static async Task Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-    if (pendingMigrations.Any()) dbContext.Database.Migrate();
+        var environment = builder.Environment;
+
+        // Connect to Postgres
+        builder.Services.AddDbContext<UKHSA_DbContext>(options =>
+        {
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            if (environment.IsDevelopment())
+            {
+                options.UseSqlite(connectionString);
+            } else {
+                options.UseNpgsql(connectionString);
+            }
+        });
+
+        ConfigureIdentity(builder);
+
+        builder.Services.AddControllersWithViews();
+
+        var app = builder.Build();
+
+        if (!environment.IsDevelopment())
+        {
+            app.UseExceptionHandler("/Error");
+            app.UseHsts();
+        }
+
+        using (var scope = app.Services.CreateAsyncScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<UKHSA_DbContext>();
+            var pendingMigrations = await dbContext.Database.GetPendingMigrationsAsync();
+
+            if (pendingMigrations.Any())
+                await dbContext.Database.MigrateAsync();
+        }
+
+        app.UseHttpsRedirection();
+        app.UseRouting();
+        app.UseAuthorization();
+        app.MapStaticAssets();
+
+        // Redirect from root
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=User}/{action=Home}/{id?}")
+        .WithStaticAssets();
+
+        await app.RunAsync();
+    }
+
+    static void ConfigureIdentity(WebApplicationBuilder builder)
+    {
+        builder.Services.AddIdentity<UKHSA.Models.User, IdentityRole>()
+        .AddEntityFrameworkStores<UKHSA_DbContext>()
+        .AddDefaultTokenProviders();
+
+        builder.Services.AddAuthentication()
+        .AddCookie(options => options.LoginPath = "/Account/Login");
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapStaticAssets();
-
-// Redirect from root
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=User}/{action=Home}/{id?}")
-.WithStaticAssets();
-
-app.Run();

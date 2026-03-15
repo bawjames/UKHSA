@@ -10,7 +10,5 @@ public class UKHSA_DbContext : DbContext
     public DbSet<Request> Requests { get; set; }
     public DbSet<Approval> Approvals { get; set; }
 
-    public UKHSA_DbContext(DbContextOptions<UKHSA_DbContext> options) : base(options)
-    {
-    }
+    public UKHSA_DbContext(DbContextOptions<UKHSA_DbContext> options) : base(options) {}
 }

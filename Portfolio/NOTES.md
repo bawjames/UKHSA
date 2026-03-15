@@ -1,14 +1,10 @@
 # Notes
 
-## Migrations
-If you modify the structure of the database, run:
-```
-$ dotnet ef migrations add MigrationName
-```
-And give the migration a helpful descriptive name.
+## Resources
 
-## Guide I used for containerising
-[View guide here](https://medium.com/codex/containerizing-a-net-app-with-postgres-using-docker-compose-a35167b419e7)
+### Docker
+https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/building-net-docker-images?view=aspnetcore-10.0
+https://medium.com/codex/containerizing-a-net-app-with-postgres-using-docker-compose-a35167b419e7
 
 ## Feedback (week 1)
 - would be nice to be able to have an option to say why a request was rejected
