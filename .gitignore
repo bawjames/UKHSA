@@ -1,9 +1,9 @@
-# Never commit .env.
+# Never commit .env
 .env
 
 # Ignore Development database
 app.sqlite
 
-# Ignore obj/ and bin/ anywhere.
+# Ignore obj/ and bin/ anywhere
 obj/
 bin/
