@@ -6,7 +6,7 @@ namespace UKHSA;
 
 class Program
 {
-    public static async Task Main(string[] args)
+    public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +25,23 @@ class Program
             }
         });
 
-        ConfigureIdentity(builder);
+        builder.Services
+        .AddIdentity<UKHSA.Models.User, IdentityRole>(options =>
+        {
+            options.User.RequireUniqueEmail = true;
+
+            options.Password.RequireDigit = false;
+            options.Password.RequireLowercase = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequiredUniqueChars = 0;
+            options.Password.RequiredLength = 5;
+        })
+        .AddEntityFrameworkStores<UKHSA_DbContext>()
+        .AddDefaultTokenProviders();
+
+        builder.Services.AddAuthentication()
+        .AddCookie(options => options.LoginPath = "/Account/Login");
 
         builder.Services.AddControllersWithViews();
 
@@ -37,14 +53,16 @@ class Program
             app.UseHsts();
         }
 
-        using (var scope = app.Services.CreateAsyncScope())
+        using (var scope = app.Services.CreateScope())
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<UKHSA_DbContext>();
-            var pendingMigrations = await dbContext.Database.GetPendingMigrationsAsync();
 
-            if (pendingMigrations.Any())
-                await dbContext.Database.MigrateAsync();
+            if (dbContext.Database.GetPendingMigrations().Any())
+            {
+                dbContext.Database.Migrate();
+            }
         }
+
 
         app.UseHttpsRedirection();
         app.UseRouting();
@@ -57,16 +75,6 @@ class Program
             pattern: "{controller=User}/{action=Home}/{id?}")
         .WithStaticAssets();
 
-        await app.RunAsync();
-    }
-
-    static void ConfigureIdentity(WebApplicationBuilder builder)
-    {
-        builder.Services.AddIdentity<UKHSA.Models.User, IdentityRole>()
-        .AddEntityFrameworkStores<UKHSA_DbContext>()
-        .AddDefaultTokenProviders();
-
-        builder.Services.AddAuthentication()
-        .AddCookie(options => options.LoginPath = "/Account/Login");
+        app.Run();
     }
 }

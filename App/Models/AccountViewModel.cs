@@ -19,8 +19,12 @@ public class RegisterViewModel
 
     [Required]
     [DataType(DataType.Password)]
+    [Display(Name = "Confirm Password")]
     [Compare("Password", ErrorMessage = "Passwords must match.")]
     public required string ConfirmPassword { get; set; }
+
+    [Display(Name = "Stay Signed In?")]
+    public bool RememberMe { get; set; }
 }
 
 public class LoginViewModel
@@ -33,5 +37,6 @@ public class LoginViewModel
     [DataType(DataType.Password)]
     public required string Password { get; set; }
 
+    [Display(Name = "Remember Me")]
     public bool RememberMe { get; set; }
 }

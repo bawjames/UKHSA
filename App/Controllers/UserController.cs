@@ -6,14 +6,20 @@ namespace UKHSA.Controllers;
 
 public class UserController : Controller
 {
+    protected readonly UKHSA_DbContext _context;
+    public UserController(UKHSA_DbContext context) => _context = context;
+
     public IActionResult Home()
     {
-        return View();
+        var users = _context.Set<User>().ToList();
+        return View(users);
     }
-    public IActionResult MyRequests()
+
+    public IActionResult Requests()
     {
         return View();
     }
+
     public IActionResult RequestDocument()
     {
         return View();

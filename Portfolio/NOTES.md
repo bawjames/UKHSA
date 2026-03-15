@@ -2,6 +2,23 @@
 
 ## Resources
 
+### Migrations
+You will need the `dotnet-ef` tool installed. See more [here](https://learn.microsoft.com/en-us/ef/core/cli/)
+
+To create new migrations:
+```
+dotnet ef migrations add MigrationName
+```
+Choose a descriptive name for `MigrationName`
+
+Then, to apply migrations:
+```
+dotnet ef database update
+```
+
+This can also be used to initialize the database
+You will probably need the `ASPNETCORE_ENVIRONMENT=Development` environment variable set, otherwise it may default to `Production`, which is fine if you intend to update the database for production.
+
 ### Docker
 https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/building-net-docker-images?view=aspnetcore-10.0
 https://medium.com/codex/containerizing-a-net-app-with-postgres-using-docker-compose-a35167b419e7
