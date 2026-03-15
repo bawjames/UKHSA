@@ -16,4 +16,4 @@
         dotnet watch run --project App/UKHSA.csproj
         ```
 
-    Option 2 is probably preferable for development, because of hot-reloading and faster build times
+    Option ii is probably preferable for development, because of hot-reloading and faster build times
