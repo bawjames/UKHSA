@@ -3,17 +3,24 @@
 ## Installation
 
 ### For Development
-1.  Optionally install [Docker](https://docs.docker.com/desktop/) following the instructions for your operating system
-2.  Clone this repository
-3.  You have two options for running this webapp:
-    1.  In the repository root directory:
-        ```
-        docker compose up --build
-        ```
+1. Clone this repository
 
-    2.  In the repository root directory:
+2. You have two options for running this webapp
+
+    1.  #### Dotnet + SQLite (Development)
         ```
         dotnet watch run --project App/UKHSA.csproj
         ```
 
-    Option ii is probably preferable for development, because of hot-reloading and faster build times
+    2.  #### Docker + PostgreSQL (Production)
+        1.  Install [Docker](https://docs.docker.com/desktop/) following the instructions for your operating system
+
+        2.  In `.env`
+            ```
+            POSTGRES_PASSWORD=choose-a-strong-password
+            DATA_PROTECTION_PASSWORD=choose-a-different-strong-password
+            ```
+
+        3.  ```
+            docker compose up --build
+            ```
