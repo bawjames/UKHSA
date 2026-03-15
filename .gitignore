@@ -2,7 +2,7 @@
 .env
 
 # Ignore Development database
-app.sqlite
+app.db
 
 # Ignore obj/ and bin/ anywhere
 obj/
