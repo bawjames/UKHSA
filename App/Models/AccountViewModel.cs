@@ -23,7 +23,7 @@ public class RegisterViewModel
     [Compare("Password", ErrorMessage = "Passwords must match.")]
     public required string ConfirmPassword { get; set; }
 
-    [Display(Name = "Stay Signed In?")]
+    [Display(Name = "Stay Signed In")]
     public bool RememberMe { get; set; }
 }
 

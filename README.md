@@ -14,7 +14,7 @@
         DATA_PROTECTION_PASSWORD=choose-a-different-strong-password
         ```
 
-    2.  For the development profile with hot-reloading:
+    2.  For the development profile with hot reloading:
         ```
         docker compose watch
         ```
@@ -23,5 +23,7 @@
         docker compose --profile prod up
         ```
     3. The default URL is `[::1]:8080`
+
+Not all changes can be hot reloaded. It works best for changes to Views
 
 To apply database migrations use the `docker compose run update` command
