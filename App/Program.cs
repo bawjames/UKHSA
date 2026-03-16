@@ -12,18 +12,9 @@ class Program
 
         var environment = builder.Environment;
 
-        // Connect to Postgres
-        builder.Services.AddDbContext<UKHSA_DbContext>(options =>
-        {
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-            if (environment.IsDevelopment())
-            {
-                options.UseSqlite(connectionString);
-            } else {
-                options.UseNpgsql(connectionString);
-            }
-        });
+        // Connect to database
+        var connectionString = builder.Configuration.GetConnectionString("Connection");
+        builder.Services.AddDbContext<UKHSA_DbContext>(options => options.UseNpgsql(connectionString));
 
         builder.Services
         .AddIdentity<UKHSA.Models.User, IdentityRole>(options =>
@@ -53,16 +44,15 @@ class Program
             app.UseHsts();
         }
 
-        using (var scope = app.Services.CreateScope())
-        {
-            var dbContext = scope.ServiceProvider.GetRequiredService<UKHSA_DbContext>();
+        // using (var scope = app.Services.CreateScope())
+        // {
+        //     var dbContext = scope.ServiceProvider.GetRequiredService<UKHSA_DbContext>();
 
-            if (dbContext.Database.GetPendingMigrations().Any())
-            {
-                dbContext.Database.Migrate();
-            }
-        }
-
+        //     if (dbContext.Database.GetPendingMigrations().Any())
+        //     {
+        //         dbContext.Database.Migrate();
+        //     }
+        // }
 
         app.UseHttpsRedirection();
         app.UseRouting();

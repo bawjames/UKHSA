@@ -1,9 +1,6 @@
 # Never commit .env
 .env
 
-# Ignore Development database
-app.db*
-
 # Ignore obj/ and bin/ anywhere
 obj/
 bin/

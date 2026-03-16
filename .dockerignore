@@ -5,6 +5,6 @@
 !App/
 !Dockerfile
 
-# and ignore obj/ and bin/ anywhere.
+# and ignore these anywhere.
 **/obj/
 **/bin/
