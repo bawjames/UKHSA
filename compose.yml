@@ -25,7 +25,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    profiles: ["", dev]
   app-dev:
     container_name: ukhsa-app-dev
     build:
@@ -46,8 +45,8 @@ services:
     develop:
       watch:
         - action: sync
-          path: .
-          target: /src
+          path: ./App
+          target: /UKHSA/App
           initial_sync: true
     profiles: ["", dev]
   app-prod:

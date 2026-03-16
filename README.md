@@ -14,14 +14,14 @@
         DATA_PROTECTION_PASSWORD=choose-a-different-strong-password
         ```
 
-    2.  For the development profile:
+    2.  For the development profile with hot-reloading:
         ```
-        docker compose up -w --build
+        docker compose watch
         ```
-        Alternatively, there is the lighter production profile:
+        Alternatively, there is the production profile:
         ```
-        docker compose --profile prod up --build
+        docker compose --profile prod up
         ```
+    3. The default URL is `[::1]:8080`
 
-To apply database migrations use the `docker compose run update` command.
-This is not necessary for development builds, which automatically apply migrations.
+To apply database migrations use the `docker compose run update` command
