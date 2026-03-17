@@ -178,3 +178,34 @@ tbody tr:last-of-type {
 thead tr:last-of-type {
   border-bottom: 2px solid #005EB8;
 }
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 5px;
+}
+.pagination li {
+  margin: 0 5px;
+}
+.pagination a, strong {
+  text-decoration: none;
+  background-color: #E8EDEE;
+  color: #000000;
+  padding: 8px 16px;
+  margin: 0px 5px;
+  box-shadow: none;
+  transition: box-shadow 0.4s, background-color 0.4s;
+}
+.pagination a:hover {
+  background-color: #768692;
+  box-shadow: 0px 3px 3px #999999;
+  transition: box-shadow 0.2s, background-color 0.2s;
+}
+.pagination .active a,.pagination .active strong {
+  background-color: #006747;
+  color: white;
+  box-shadow: 0px 3px 3px #999999;
+  transition: box-shadow 0.2s, background-color 0.2s;
+}
