@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using UKHSA.Controllers;
@@ -11,9 +12,11 @@ using UKHSA.Controllers;
 namespace UKHSA.Migrations
 {
     [DbContext(typeof(UKHSA_DbContext))]
-    partial class UKHSA_DbContextModelSnapshot : ModelSnapshot
+    [Migration("20260317163242_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,6 +168,9 @@ namespace UKHSA.Migrations
                     b.Property<bool>("Approved")
                         .HasColumnType("boolean");
 
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<DateTime>("Expires")
                         .HasColumnType("timestamp with time zone");
 
@@ -174,9 +180,6 @@ namespace UKHSA.Migrations
 
                     b.Property<int>("RequestId")
                         .HasColumnType("integer");
-
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -221,7 +224,7 @@ namespace UKHSA.Migrations
                     b.Property<int>("DatasetId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("Timestamp")
+                    b.Property<DateTime>("DateTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("UserId")

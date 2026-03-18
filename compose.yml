@@ -16,10 +16,10 @@ services:
       retries: 5
   update:
     container_name: ukhsa-update
+    entrypoint: ["dotnet", "ef", "database", "update"]
     build:
       context: .
       dockerfile: ./docker/update/Dockerfile
-    entrypoint: [dotnet, ef, database, update]
     env_file:
       - docker/common.env
     depends_on:
