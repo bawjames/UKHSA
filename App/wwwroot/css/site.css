@@ -62,7 +62,7 @@ html {
   margin: auto;
   width: 100%;
   padding: 10px;
-  background-color: #0B5C3E;
+  background-color: #006747;
   color: #FFFFFF;
   border:  thin solid #000000;
   cursor: pointer;
@@ -87,6 +87,7 @@ select{
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 
 .navbar-container{
   background-color:#005EB8;
