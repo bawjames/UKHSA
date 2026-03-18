@@ -1,62 +1,39 @@
-@{
-    ViewData["Title"] = "My Requests Page";
-}
+@model List<Request>
+  @{
+  ViewData["Title"] = "My Requests Page";
+  }
 
-<div class="text-center">
+  <div class="text-center">
     <br />
     <div class="table-container">
-        <h1>My Requests</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Document</th>
-                    <th>Status</th>
-                    <th>Notes</th>
-                    <th>Requested Date</th>
-                    <th>Approved Date</th>
-                    <th>Expiry Date</th>
-                    <th>Request Extension</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Document</td>
-                    <td>Status</td>
-                    <td>Notes</td>
-                    <td>Requested Date</td>
-                    <td>Approved Date</td>
-                    <td>Expiry Date</td>
-                    <td> <button class="input-button">Extension</button></td>
-                </tr>
-                <tr>
-                    <td>Document</td>
-                    <td>Status</td>
-                    <td>Notes</td>
-                    <td>Requested Date</td>
-                    <td>Approved Date</td>
-                    <td>Expiry Date</td>
-                    <td> <button class="input-button">Extension</button></td>
-                </tr>
-                <tr>
-                    <td>Document</td>
-                    <td>Status</td>
-                    <td>Notes</td>
-                    <td>Requested Date</td>
-                    <td>Approved Date</td>
-                    <td>Expiry Date</td>
-                    <td> <button class="input-button">Extension</button></td>
-                </tr>
-                <tr>
-                    <td>Document</td>
-                    <td>Status</td>
-                    <td>Notes</td>
-                    <td>Requested Date</td>
-                    <td>Approved Date</td>
-                    <td>Expiry Date</td>
-                    <td> <button class="input-button">Extension</button></td>
-                </tr>
-            </tbody>
-        </table>
+      <h1>My Requests</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Document</th>
+            <th>Status</th>
+            <th>Notes</th>
+            <th>Requested Date</th>
+            <th>Approved Date</th>
+            <th>Expiry Date</th>
+            <th>Request Extension</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var request in Model)
+          {
+          <tr>
+            <td>@request.Dataset.Title</td>
+            <td>@request.Approval.Approved</td>
+            <td>@request.Approval.RejectedReason</td>
+            <td>@request.Timestamp</td>
+            <td>@request.Approval.Timestamp</td>
+            <td>@request.Approval.Expires</td>
+            <td> <button class="input-button">Extension</button></td>
+          </tr>
+          }
+        </tbody>
+      </table>
 
     </div>
-</div>
+  </div>

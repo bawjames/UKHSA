@@ -19,15 +19,13 @@ public class UserController : Controller
     public IActionResult Home()
     {
         var users = _context.Users.ToList();
+
         return View(users);
     }
 
     public IActionResult Requests()
     {
         var requests = _context.Requests
-        .Select(r => new {
-            r.UserId
-        })
         .Where(r => r.UserId == _userManager.GetUserId(User))
         .ToList();
 
