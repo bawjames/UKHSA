@@ -181,8 +181,8 @@ namespace UKHSA.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    RequestDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UserId = table.Column<string>(type: "text", nullable: true),
+                    DateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UserId = table.Column<string>(type: "text", nullable: false),
                     DatasetId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -192,7 +192,8 @@ namespace UKHSA.Migrations
                         name: "FK_Requests_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Requests_Datasets_DatasetId",
                         column: x => x.DatasetId,
@@ -208,8 +209,9 @@ namespace UKHSA.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Approved = table.Column<bool>(type: "boolean", nullable: false),
-                    ApprovedDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    RejectedReason = table.Column<string>(type: "text", nullable: true),
+                    DateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Expires = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    RejectedReason = table.Column<string>(type: "text", nullable: false),
                     RequestId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
