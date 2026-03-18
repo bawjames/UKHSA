@@ -1,10 +1,34 @@
 # UKHSA
 
 ## Installation
-1. Install [Docker](https://docs.docker.com/desktop/) using the instructions for your operating system
-2. Download the Docker image from [Releases](https://github.com/bawjames/UKHSA/releases)
-3.
 
 ### For Development
-[See Issue #3](https://github.com/bawjames/UKHSA/issues/3)
-<!-- Need to update this when we create proper releases -->
+
+1. Clone this repository
+
+2. Install [Docker](https://docs.docker.com/desktop/) following the instructions for your operating system
+
+3.  In `.env`:
+    ```
+    POSTGRES_PASSWORD=choose-a-strong-password
+    DATA_PROTECTION_PASSWORD=choose-a-different-strong-password
+    ```
+
+4.  Initialize the database:
+    ```
+    docker compose run update
+    ```
+
+5.  For the development profile with hot reloading:
+    ```
+    docker compose up
+    ```
+    Alternatively, there is the production profile:
+    ```
+    docker compose --profile prod up
+    ```
+
+6. The default URL is `[::1]:8080`
+
+Any changes to the database require you to repeat Step 2
+Not all changes can be hot reloaded. It works best for changes to Views

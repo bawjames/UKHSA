@@ -1,36 +1,67 @@
 services:
   db:
     container_name: ukhsa-db
-    image: postgres
+    image: postgres:latest
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: UKHSA
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: [CMD-SHELL, "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
-  app:
-    container_name: ukhsa-app
-    build: .
+  update:
+    container_name: ukhsa-update
+    build:
+      context: .
+      dockerfile: ./docker/update/Dockerfile
+    entrypoint: [dotnet, ef, database, update]
+    env_file:
+      - docker/common.env
+    depends_on:
+      db:
+        condition: service_healthy
+  app-dev:
+    container_name: ukhsa-app-dev
+    build:
+      context: .
+      dockerfile: ./docker/dev/Dockerfile
     ports:
       - 8080:8080
+    env_file:
+      - docker/common.env
+    volumes:
+      - ./App:/UKHSA/App
+      - aspnet_keys:/root/.aspnet/DataProtection-Keys
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
+      update:
+        condition: service_completed_successfully
+    profiles: ["", dev]
+  app-prod:
+    container_name: ukhsa-app-prod
+    build:
+      context: .
+      dockerfile: ./docker/prod/Dockerfile
+    ports:
+      - 8080:8080
+    env_file:
+      - docker/common.env
     environment:
-      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=UKHSA;Username=postgres;Password=${POSTGRES_PASSWORD}
       ASPNETCORE_ENVIRONMENT: Production
-      DataProtection__EncryptWithPassword: true
-      DataProtection__Password: ${DATA_PROTECTION_PASSWORD}
     volumes:
       - aspnet_keys:/root/.aspnet/DataProtection-Keys
     depends_on:
       db:
         condition: service_healthy
         restart: true
+    profiles: [prod]
 volumes:
   postgres_data:
   aspnet_keys:

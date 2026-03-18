@@ -9,11 +9,6 @@ public class AccountController : Controller
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
-
     public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
     {
         _userManager = userManager;
@@ -33,6 +28,9 @@ public class AccountController : Controller
 
         var user = new User
         {
+            // Inherited from IdentityUser
+            UserName = model.Email,
+
             Email = model.Email,
             Forename = model.Forename,
             Surname = model.Surname,
@@ -42,8 +40,8 @@ public class AccountController : Controller
 
         if (result.Succeeded)
         {
-            await _signInManager.SignInAsync(user, isPersistent: false);
-            return RedirectToAction("Index", "Home");
+            await _signInManager.SignInAsync(user, isPersistent: model.RememberMe);
+            return Redirect("/");
         }
 
         foreach (var error in result.Errors)
@@ -65,7 +63,7 @@ public class AccountController : Controller
 
         var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
 
-        if (result.Succeeded) return RedirectToAction("Index", "Home");
+        if (result.Succeeded) return Redirect("/");
 
         ModelState.AddModelError("", "Incorrect username or password");
         return View(model);
@@ -75,6 +73,6 @@ public class AccountController : Controller
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
-        return RedirectToAction("Index", "Home");
+        return Redirect("/");
     }
 }
