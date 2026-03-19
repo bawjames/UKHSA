@@ -2,18 +2,9 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UKHSA.Models;
+using UKHSA.Shared;
 
 namespace UKHSA.Controllers;
-
-// Move this to a different namespace
-public class Paginated<T>
-{
-    public List<T> Items { get; set; }
-    public int CurrentPage { get; set; }
-    public int PageSize { get; set; }
-    public int TotalItems { get; set; }
-    public int TotalPages => (int)Math.Ceiling(TotalItems / (double)PageSize);
-}
 
 public class UserController : Controller
 {
@@ -31,22 +22,19 @@ public class UserController : Controller
         return View();
     }
 
-    public IActionResult Requests(int page = 1, int pageSize = 20)
+    public IActionResult Requests(int page = 1, int perPage = 20)
     {
-        var requests = _context.Requests
-                       .Where(r => r.UserId == _userManager.GetUserId(User))
-                       .Skip((page - 1) * pageSize)
-                       .Take(pageSize)
-                       .ToList();
-
         int totalItems = _context.Requests.Count();
-        int totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+
+        var allRequests = _context.Requests
+                          .Where(r => r.UserId == _userManager.GetUserId(User))
+                          .ToList();
 
         var model = new Paginated<Request> {
             CurrentPage = page,
-            PageSize = pageSize,
+            PerPage = perPage,
             TotalItems = totalItems,
-            Items = requests,
+            Items = allRequests,
         };
 
         return View(model);
