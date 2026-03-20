@@ -15,7 +15,7 @@ html {
 .btn-link.nav-link:focus,
 .form-control:focus,
 .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem var(--white-text), 0 0 0 0.25rem;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem;
 }
 
 .container {
@@ -29,13 +29,12 @@ html {
   background-color: var(--nav-colour);
 }
 
-
-
 .login-container {
   width: 300px;
   margin: 0 auto;
   padding: 20px;
-  background-color: var(--backgound-colour);
+  background-color: var(--background-colour);
+  border-radius: 0px;
 }
 
 .input-box {
@@ -46,8 +45,8 @@ html {
   padding: 10px;
   text-align: center;
   margin-bottom: 10px;
-  border: 1px solid var(--white-text);
-  border-radius: 4px;
+  border: none;
+  border-radius: 0px;
 }
 
 .input-button {
@@ -56,7 +55,7 @@ html {
   width: 100%;
   padding: 10px;
   background-color: var(--button);
-  color: var(--white-text);
+  color: white;
   border: thin solid var(--button-border);
   cursor: pointer;
   box-shadow: none;
@@ -69,7 +68,7 @@ html {
   width: 100%;
   padding: 10px;
   background-color: var(--button-hover);
-  color: var(--white-text);
+  color: white;
   border: thin solid var(--button-border);
   cursor: pointer;
   box-shadow: 0px 3px 3px var(--shadow);
@@ -79,13 +78,14 @@ html {
 
 select {
   -webkit-border-radius: 0;
+  border-radius: 0px;
   background-color: var(--nav-colour);
   /* Fallback color if gradients are not supported */
   background-position: center right;
   background-repeat: no-repeat;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   border: none;
-  color: var(--white-text);
+  color: white;
   font-size: inherit;
   margin: 0;
   overflow: hidden;
@@ -109,7 +109,7 @@ select {
 
 .nav-link {
   display: block;
-  color: var(--white-text);
+  color: white;
   padding: 14px 16px;
   text-decoration: none;
   transition: background-color 0.3s;
@@ -117,14 +117,14 @@ select {
 
 .nav-header {
   display: block;
-  color: var(--white-text);
+  color: white;
   padding: 14px 16px;
   text-decoration: none;
 }
 
 .nav-link:hover {
   background-color: var(--nav-colour-hover);
-  color: var(--white-text);
+  color: white;
 }
 
 html {
@@ -153,7 +153,7 @@ body {
 
 nav {
   background-color: var(--nav-colour);
-  color: var(--white-text) !important;
+  color: white !important;
 }
 
 .table-container {
@@ -224,7 +224,7 @@ strong {
 .pagination .active a,
 .pagination .active strong {
   background-color: var(--button-hover);
-  color: var(--white-text);
+  color: white;
   box-shadow: 0px 3px 3px var(--shadow);
   transition: box-shadow 0.2s, background-color 0.2s;
 }
