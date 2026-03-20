@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Deny Requests Page";
+}
+
+<div class="text-center">
+    <br />
+    <div class="login-container">
+        <h1> Deny Request </h1>
+            <form asp-action="DenyRequest" method="post">
+                <label> Reason for Rejection</label>
+                <br />
+                <input type="text" id="reason" name="reason"/>
+                <button type="submit" class="input-button">Submit</button>
+            </form>
+    </div>
+</div>
