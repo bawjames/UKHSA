@@ -10,77 +10,82 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem var(--white-text), 0 0 0 0.25rem #258cfb;
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem;
 }
 
-.container{
+.container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
 
-.footer-container{
+.footer-container {
   background-color: var(--nav-colour);
 }
 
-
-
-.login-container{
+.login-container {
   width: 300px;
   margin: 0 auto;
   padding: 20px;
-  background-color: var(--background-colour) ;
+  background-color: var(--background-colour);
+  border-radius: 0px;
 }
 
-.input-box{
-  display:  block;
+.input-box {
+  display: block;
   margin-left: auto;
   margin-right: auto;
   width: calc(100% - 22px);
   padding: 10px;
   text-align: center;
   margin-bottom: 10px;
-  border: 1px solid var(--white-text);
-  border-radius: 4px;
+  border: none;
+  border-radius: 0px;
 }
 
-.input-button{
-  display:  block;
+.input-button {
+  display: block;
   margin: auto;
   width: 100%;
   padding: 10px;
-  background-color: var(--button); 
-  color: var(--white-text);
+  background-color: var(--button);
+  color: white;
   border: thin solid var(--button-border);
   cursor: pointer;
   box-shadow: none;
   transition: box-shadow 0.4s, background-color 0.4s;
 }
 
- .input-button:hover{
-  display:  block;
+.input-button:hover {
+  display: block;
   margin: auto;
   width: 100%;
   padding: 10px;
   background-color: var(--button-hover);
-  color: var(--white-text);
-  border:  thin solid var(--button-border);
+  color: white;
+  border: thin solid var(--button-border);
   cursor: pointer;
   box-shadow: 0px 3px 3px var(--shadow);
   transition: box-shadow 0.2s, background-color 0.2s;
 }
 
 
-select{
+select {
   -webkit-border-radius: 0;
-  background-color: var(--nav-colour); /* Fallback color if gradients are not supported */
+  border-radius: 0px;
+  background-color: var(--nav-colour);
+  /* Fallback color if gradients are not supported */
   background-position: center right;
   background-repeat: no-repeat;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   border: none;
-  color: var(--white-text);
+  color: white;
   font-size: inherit;
   margin: 0;
   overflow: hidden;
@@ -91,8 +96,8 @@ select{
 }
 
 
-.navbar-container{
-  background-color:var(--nav-colour);
+.navbar-container {
+  background-color: var(--nav-colour);
 }
 
 .navbar-items {
@@ -102,23 +107,24 @@ select{
   display: flex;
 }
 
-.nav-link{
+.nav-link {
   display: block;
-  color: var(--white-text);
+  color: white;
   padding: 14px 16px;
   text-decoration: none;
   transition: background-color 0.3s;
 }
 
-.nav-header{
+.nav-header {
   display: block;
-  color: var(--white-text);
+  color: white;
   padding: 14px 16px;
   text-decoration: none;
 }
+
 .nav-link:hover {
   background-color: var(--nav-colour-hover);
-  color: var(--white-text);
+  color: white;
 }
 
 html {
@@ -134,22 +140,24 @@ body {
   margin-bottom: 60px;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+.form-floating>.form-control-plaintext::placeholder,
+.form-floating>.form-control::placeholder {
   color: var(--bs-secondary-color);
   text-align: end;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+.form-floating>.form-control-plaintext:focus::placeholder,
+.form-floating>.form-control:focus::placeholder {
   text-align: start;
 }
 
 nav {
   background-color: var(--nav-colour);
-  color: var(--white-text) !important;
+  color: white !important;
 }
 
-.table-container{
-  margin: 25px 3em; 
+.table-container {
+  margin: 25px 3em;
 }
 
 
@@ -161,13 +169,14 @@ table {
   overflow: hidden;
 }
 
-  thead tr{
+thead tr {
   background-color: var(--backgound-colour);
   color: var(--button-border);
-  text-align: left; 
+  text-align: left;
 }
 
-th, td {
+th,
+td {
   padding: 12px 15px;
 }
 
@@ -178,6 +187,7 @@ tbody tr:nth-of-type(even) {
 tbody tr:last-of-type {
   border-bottom: 2px solid var(--nav-colour);
 }
+
 thead tr:last-of-type {
   border-bottom: 2px solid var(--nav-colour);
 }
@@ -189,10 +199,13 @@ thead tr:last-of-type {
   list-style-type: none;
   padding: 5px;
 }
+
 .pagination li {
   margin: 0 5px;
 }
-.pagination a, strong {
+
+.pagination a,
+strong {
   text-decoration: none;
   background-color: var(--backgound-colour);
   color: var(--button-border);
@@ -201,14 +214,17 @@ thead tr:last-of-type {
   box-shadow: none;
   transition: box-shadow 0.4s, background-color 0.4s;
 }
+
 .pagination a:hover {
   background-color: var(--pagination-hover);
   box-shadow: 0px 3px 3px var(--shadow);
   transition: box-shadow 0.2s, background-color 0.2s;
 }
-.pagination .active a,.pagination .active strong {
+
+.pagination .active a,
+.pagination .active strong {
   background-color: var(--button-hover);
-  color: var(--white-text);
+  color: white;
   box-shadow: 0px 3px 3px var(--shadow);
   transition: box-shadow 0.2s, background-color 0.2s;
 }
