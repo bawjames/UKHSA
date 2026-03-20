@@ -1,9 +1,11 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using UKHSA.Models;
 
 namespace UKHSA.Controllers;
 
+[Authorize(Roles = "Admin")]
 public class AdminController : Controller
 {
     protected readonly UKHSA_DbContext _context;

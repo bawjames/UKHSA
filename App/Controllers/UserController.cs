@@ -29,7 +29,6 @@ public class UserController : Controller
                           .Where(r => r.UserId == _userManager.GetUserId(User))
                           .ToList();
 
-                          
         int totalItems = allRequests.Count();
 
         var model = new Paginated<Request> {

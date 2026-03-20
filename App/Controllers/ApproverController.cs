@@ -1,10 +1,12 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using UKHSA.Models;
 using UKHSA.Shared;
 
 namespace UKHSA.Controllers;
 
+[Authorize(Roles = "Approver, Admin")]
 public class ApproverController : Controller
 {
      protected readonly UKHSA_DbContext _context;
@@ -12,7 +14,7 @@ public class ApproverController : Controller
 
     public IActionResult ApproveRequest(int page = 1, int perPage = 20)
     {
-        
+
         int totalItems = _context.Requests.Count();
         var requests = _context.Requests.ToList();
 
