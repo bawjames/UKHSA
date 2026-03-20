@@ -24,11 +24,13 @@ public class UserController : Controller
 
     public IActionResult Requests(int page = 1, int perPage = 20)
     {
-        int totalItems = _context.Requests.Count();
 
         var allRequests = _context.Requests
                           .Where(r => r.UserId == _userManager.GetUserId(User))
                           .ToList();
+
+                          
+        int totalItems = allRequests.Count();
 
         var model = new Paginated<Request> {
             CurrentPage = page,
