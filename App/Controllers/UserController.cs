@@ -1,23 +1,43 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UKHSA.Models;
+using UKHSA.Shared;
 
 namespace UKHSA.Controllers;
 
 public class UserController : Controller
 {
     protected readonly UKHSA_DbContext _context;
-    public UserController(UKHSA_DbContext context) => _context = context;
+    private readonly UserManager<User> _userManager;
+
+    public UserController(UKHSA_DbContext context, UserManager<User> userManager)
+    {
+        _context = context;
+        _userManager = userManager;
+    }
 
     public IActionResult Home()
     {
-        var users = _context.Set<User>().ToList();
-        return View(users);
+        return View();
     }
 
-    public IActionResult Requests()
+    public IActionResult Requests(int page = 1, int perPage = 20)
     {
-        return View();
+        int totalItems = _context.Requests.Count();
+
+        var allRequests = _context.Requests
+                          .Where(r => r.UserId == _userManager.GetUserId(User))
+                          .ToList();
+
+        var model = new Paginated<Request> {
+            CurrentPage = page,
+            PerPage = perPage,
+            TotalItems = totalItems,
+            Items = allRequests,
+        };
+
+        return View(model);
     }
 
     public IActionResult RequestDocument()

@@ -1,0 +1,25 @@
+@{
+  ViewData["Title"] = "Add Document Page";
+}
+
+<div class="text-center">
+  <br />
+  <div class="login-container">
+    <h1>Add New Document</h1>
+    <form>
+
+    <h3>Document Name</h3>
+    <input type="text" id="doc-name" class="input-box" required />
+
+    <h3>Access Type</h3>
+    <input type="radio" id="sensitive" name="documenttype" />
+    <label for="sensitive">Sensitive</label>
+    <input type="radio" id="non-sensitive" name="documenttype" />
+    <label for="non-sensitive">Non-sensitive</label>
+
+    <h3>Description</h3>
+    <textarea rows="4" cols="41"></textarea>
+    <button class="input-button" type="submit" style="margin-top: 2em;">Request Document</button>
+    </form>
+  </div>
+</div>

@@ -12,8 +12,8 @@ using UKHSA.Controllers;
 namespace UKHSA.Migrations
 {
     [DbContext(typeof(UKHSA_DbContext))]
-    [Migration("20260316103129_Initial")]
-    partial class Initial
+    [Migration("20260317172841_0")]
+    partial class _0
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -168,14 +168,18 @@ namespace UKHSA.Migrations
                     b.Property<bool>("Approved")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("ApprovedDateTime")
+                    b.Property<DateTime>("Expires")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("RejectedReason")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("RequestId")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -220,10 +224,11 @@ namespace UKHSA.Migrations
                     b.Property<int>("DatasetId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("RequestDateTime")
+                    b.Property<DateTime>("Timestamp")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -382,7 +387,9 @@ namespace UKHSA.Migrations
 
                     b.HasOne("UKHSA.Models.User", "User")
                         .WithMany("Requests")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Dataset");
 

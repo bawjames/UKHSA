@@ -9,7 +9,7 @@ html {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+  box-shadow: 0 0 0 0.1rem var(--white-text), 0 0 0 0.25rem #258cfb;
 }
 
 .container{
@@ -20,7 +20,7 @@ html {
 
 
 .footer-container{
-  background-color: #005EB8;
+  background-color: var(--nav-colour);
 }
 
 
@@ -29,7 +29,7 @@ html {
   width: 300px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #E8EDEE ;
+  background-color: var(--backgound-colour) ;
 }
 
 .input-box{
@@ -40,7 +40,7 @@ html {
   padding: 10px;
   text-align: center;
   margin-bottom: 10px;
-  border: 1px solid #FFFFFF;
+  border: 1px solid var(--white-text);
   border-radius: 4px;
 }
 
@@ -49,9 +49,9 @@ html {
   margin: auto;
   width: 100%;
   padding: 10px;
-  background-color: #006747;
-  color: #FFFFFF;
-  border: none;
+  background-color: var(--button); 
+  color: var(--white-text);
+  border: thin solid var(--button-border);
   cursor: pointer;
   box-shadow: none;
   transition: box-shadow 0.4s, background-color 0.4s;
@@ -62,23 +62,23 @@ html {
   margin: auto;
   width: 100%;
   padding: 10px;
-  background-color: #78BE20;
-  color: #FFFFFF;
-  border: none;
+  background-color: var(--button-hover);
+  color: var(--white-text);
+  border:  thin solid var(--button-border);
   cursor: pointer;
-  box-shadow: 0px 3px 3px #999999;
+  box-shadow: 0px 3px 3px var(--shadow);
   transition: box-shadow 0.2s, background-color 0.2s;
 }
 
 
 select{
   -webkit-border-radius: 0;
-  background-color: #005EB8; /* Fallback color if gradients are not supported */
+  background-color: var(--nav-colour); /* Fallback color if gradients are not supported */
   background-position: center right;
   background-repeat: no-repeat;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   border: none;
-  color: #FFFFFF;
+  color: var(--white-text);
   font-size: inherit;
   margin: 0;
   overflow: hidden;
@@ -88,8 +88,9 @@ select{
   white-space: nowrap;
 }
 
+
 .navbar-container{
-  background-color:#005EB8;
+  background-color:var(--nav-colour);
 }
 
 .navbar-items {
@@ -101,7 +102,7 @@ select{
 
 .nav-link{
   display: block;
-  color: white;
+  color: var(--white-text);
   padding: 14px 16px;
   text-decoration: none;
   transition: background-color 0.3s;
@@ -109,13 +110,13 @@ select{
 
 .nav-header{
   display: block;
-  color: white;
+  color: var(--white-text);
   padding: 14px 16px;
   text-decoration: none;
 }
 .nav-link:hover {
-  background-color:#0072CE;
-  color:#FFFFFF;
+  background-color: var(--nav-colour-hover);
+  color: var(--white-text);
 }
 
 html {
@@ -141,8 +142,8 @@ body {
 }
 
 nav {
-  background-color: #005EB8;
-  color: #FFFFFF !important;
+  background-color: var(--nav-colour);
+  color: var(--white-text) !important;
 }
 
 .table-container{
@@ -159,8 +160,8 @@ table {
 }
 
   thead tr{
-  background-color: #e8edee ;
-  color: #000000;
+  background-color: var(--backgound-colour);
+  color: var(--button-border);
   text-align: left; 
 }
 
@@ -169,14 +170,14 @@ th, td {
 }
 
 tbody tr:nth-of-type(even) {
-  background-color: #E8EDEE;
+  background-color: var(--backgound-colour);
 }
 
 tbody tr:last-of-type {
-  border-bottom: 2px solid #005EB8;
+  border-bottom: 2px solid var(--nav-colour);
 }
 thead tr:last-of-type {
-  border-bottom: 2px solid #005EB8;
+  border-bottom: 2px solid var(--nav-colour);
 }
 
 
@@ -191,21 +192,21 @@ thead tr:last-of-type {
 }
 .pagination a, strong {
   text-decoration: none;
-  background-color: #E8EDEE;
-  color: #000000;
+  background-color: var(--backgound-colour);
+  color: var(--button-border);
   padding: 8px 16px;
   margin: 0px 5px;
   box-shadow: none;
   transition: box-shadow 0.4s, background-color 0.4s;
 }
 .pagination a:hover {
-  background-color: #768692;
-  box-shadow: 0px 3px 3px #999999;
+  background-color: var(--pagination-hover);
+  box-shadow: 0px 3px 3px var(--shadow);
   transition: box-shadow 0.2s, background-color 0.2s;
 }
 .pagination .active a,.pagination .active strong {
-  background-color: #006747;
-  color: white;
-  box-shadow: 0px 3px 3px #999999;
+  background-color: var(--button-hover);
+  color: var(--white-text);
+  box-shadow: 0px 3px 3px var(--shadow);
   transition: box-shadow 0.2s, background-color 0.2s;
 }

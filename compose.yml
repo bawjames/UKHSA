@@ -19,12 +19,12 @@ services:
     build:
       context: .
       dockerfile: ./docker/update/Dockerfile
-    entrypoint: [dotnet, ef, database, update]
     env_file:
       - docker/common.env
     depends_on:
       db:
         condition: service_healthy
+    profiles: [update]
   app-dev:
     container_name: ukhsa-app-dev
     build:
@@ -41,8 +41,6 @@ services:
       db:
         condition: service_healthy
         restart: true
-      update:
-        condition: service_completed_successfully
     profiles: ["", dev]
   app-prod:
     container_name: ukhsa-app-prod
