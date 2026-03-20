@@ -8,16 +8,14 @@ public class User : IdentityUser
 
     public required string Forename { get; set; }
     public required string Surname { get; set; }
-    public Role Role { get; set; } = Role.Standard;
 
     public List<Request> Requests { get; set; } = [];
 }
 
-public enum Role
-{
-    Standard,
-    Approver,
-    Admin
+public static class Roles {
+    public const string AdminRole = "Admin";
+    public const string ApproverRole = "Approver";
+    public const string UserRole = "User";
 }
 
 public class Request

@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using UKHSA.Controllers;
+using UKHSA.Models;
 
 namespace UKHSA;
 
 class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -44,15 +45,18 @@ class Program
             app.UseHsts();
         }
 
-        // using (var scope = app.Services.CreateScope())
-        // {
-        //     var dbContext = scope.ServiceProvider.GetRequiredService<UKHSA_DbContext>();
+        using (var scope = app.Services.CreateScope())
+        {
+            string[] roles = { Roles.AdminRole, Roles.ApproverRole, Roles.UserRole };
 
-        //     if (dbContext.Database.GetPendingMigrations().Any())
-        //     {
-        //         dbContext.Database.Migrate();
-        //     }
-        // }
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            foreach (var role in roles)
+            {
+                var _ = await roleManager.CreateAsync(new IdentityRole(role));
+            }
+
+        }
 
         app.UseHttpsRedirection();
         app.UseRouting();
