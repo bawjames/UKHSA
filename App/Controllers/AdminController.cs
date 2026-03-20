@@ -15,6 +15,16 @@ public class AdminController : Controller
         return View(documents);
     }
 
+    public IActionResult RoleManagement()
+    {
+        return View();
+    }
+
+    public IActionResult CSVImporter()
+    {
+        return View();
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
