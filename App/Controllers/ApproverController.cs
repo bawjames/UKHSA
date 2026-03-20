@@ -6,9 +6,13 @@ namespace UKHSA.Controllers;
 
 public class ApproverController : Controller
 {
+     protected readonly UKHSA_DbContext _context;
+    public ApproverController(UKHSA_DbContext context) => _context = context;
+
     public IActionResult ApproveRequest()
     {
-        return View();
+        var requests = _context.Requests.ToList();
+        return View(requests);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

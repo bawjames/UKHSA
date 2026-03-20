@@ -1,3 +1,5 @@
+@model List<Dataset>
+
 @{
   ViewData["Title"] = "Request Document Page";
 }
@@ -9,11 +11,11 @@
     <form>
       <h3>Select Document</h3>
       <select>
-        <option>Doc1</option>
-        <option>Doc2</option>
-        <option>Doc3</option>
-        <option>Doc4</option>
-        <option>Doc5</option>
+        <asp:Content id="Content1" contentplaceholderid="SelectDropdown" runat="server">
+          <% foreach (var item in documents){ %>
+            <option>Html.Encode(item.Title)</option>
+          </%>}
+        </asp:Content>
       </select>
       <h3>Access Type</h3>
       <input type="radio" id="sensitive" name="documenttype" />

@@ -22,7 +22,8 @@ public class UserController : Controller
 
     public IActionResult RequestDocument()
     {
-        return View();
+        var documents = _context.Datasets.ToList;
+        return View(documents);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

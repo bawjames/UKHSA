@@ -1,3 +1,5 @@
+@model List<Request>
+
 @{
     ViewData["Title"] = "Approve Requests Page";
     Layout = "~/Views/Shared/Dashboard.cshtml";
@@ -17,13 +19,20 @@
                 </tr>
             </thead>
             <tbody>
+                <asp:Content id="Content1" contentplaceholderid="TableBody" runat="server">
+                <% foreach (var item in Model) { %>
+
                 <tr>
-                    <td>Document Requested</td>
-                    <td>User</td>
-                    <td>Date Requested</td>
+                    <td><%= Html.Encode(item.Dataset)%></td>
+                    <td><%= Html.Encode(item.User)%></td>
+                    <td><%= Html.Encode(item.DateTime)%></td>
                     <td><button class="input-button">Approve</button></td>
                     <td><button class="input-button">Deny</button></td>
                 </tr>
+
+                </%>}
+                
+                </asp:Content>
             </tbody>
         </table>
         <div class="pagination">
