@@ -8,12 +8,12 @@
   <br />
   <div class="login-container">
     <h1>Request Document</h1>
-    <form>
+    <form asp-action="Request Dataset" method="post">
       <h3>Select Document</h3>
-      <select>
+      <select >
         <asp:Content id="Content1" contentplaceholderid="SelectDropdown" runat="server">
           <% foreach (var item in documents){ %>
-            <option>Html.Encode(item.Title)</option>
+            <option value="Html.Encode(item.Id)">Html.Encode(item.Title)</option>
           </%>}
         </asp:Content>
       </select>

@@ -1,3 +1,5 @@
+@import "colour.css";
+
 html {
   font-size: 14px;
 }
@@ -29,7 +31,7 @@ html {
   width: 300px;
   margin: 0 auto;
   padding: 20px;
-  background-color: var(--backgound-colour) ;
+  background-color: var(--background-colour) ;
 }
 
 .input-box{
