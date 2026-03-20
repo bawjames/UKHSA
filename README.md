@@ -16,7 +16,7 @@
 
 4.  Initialize the database:
     ```
-    docker compose run update
+    docker compose up update --build
     ```
 
 5.  For the development profile with hot reloading:
