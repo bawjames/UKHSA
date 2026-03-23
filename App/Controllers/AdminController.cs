@@ -1,28 +1,38 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using UKHSA.Models;
 
 namespace UKHSA.Controllers;
 
-[Authorize(Roles = "Admin")]
+// [Authorize(Roles = "Admin")]
 public class AdminController : Controller
 {
+    private readonly UserManager<User> _userManager;
     protected readonly UKHSA_DbContext _context;
-    public AdminController(UKHSA_DbContext context) => _context = context;
 
+    public AdminController(UserManager<User> userManager, UKHSA_DbContext context)
+    {
+        _userManager = userManager;
+        _context = context;
+    }
+
+    [HttpGet]
     public IActionResult AddDocument()
     {
         var documents = _context.Datasets.ToList;
         return View(documents);
     }
 
-    public IActionResult RoleManagement()
+    [HttpGet]
+    public IActionResult AddDataset(AddDatasetViewModel model)
     {
-        return View();
+        var datasets = _context.Datasets.ToList;
+        return View(datasets);
     }
 
-    public IActionResult CSVImporter()
+    public IActionResult RoleManagement()
     {
         return View();
     }
