@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using UKHSA.Models;
 
 namespace UKHSA.Controllers;
@@ -35,7 +36,8 @@ public class AdminController : Controller
             AccessLevel = Int32.Parse(Dataset.AccessLevel),
         };
         _context.Datasets.Add(InputData);
-        return View();
+        await _context.SaveChangesAsync();
+        return Redirect("/");
     }
 
 
