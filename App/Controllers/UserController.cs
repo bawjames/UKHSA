@@ -43,7 +43,7 @@ public class UserController : Controller
 
     public IActionResult RequestDocument()
     {
-        var documents = _context.Datasets.ToList;
+        var documents = _context.Datasets.ToList();
         return View(documents);
     }
 

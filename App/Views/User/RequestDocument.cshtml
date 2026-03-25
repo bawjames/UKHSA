@@ -9,14 +9,15 @@
   <div class="login-container">
     <h1>Request Document</h1>
     <form asp-action="Request Dataset" method="post">
+
       <h3>Select Document</h3>
-      <select >
-        <asp:Content id="Content1" contentplaceholderid="SelectDropdown" runat="server">
-          <% foreach (var item in documents){ %>
-            <option value="Html.Encode(item.Id)">Html.Encode(item.Title)</option>
-          </%>}
-        </asp:Content>
+      <select name="DatasetId">
+      @foreach (var item in Model)
+      {
+        <option value="@item.Id">@item.Title</option>
+      }
       </select>
+      
       <h3>Access Type</h3>
       <input type="radio" id="sensitive" name="documenttype" />
       <label for="sensitive">sensitive</label>
