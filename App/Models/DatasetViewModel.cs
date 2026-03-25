@@ -9,6 +9,6 @@ public class AddDatasetViewModel
 	[Required]
 	public required string Description { get; set; }
 
-	// [Required]
-	// public required string AccessLevel;
+	[Required]
+	public required string AccessLevel;
 }

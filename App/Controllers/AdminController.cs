@@ -19,18 +19,26 @@ public class AdminController : Controller
     }
 
     [HttpGet]
-    public IActionResult AddDocument()
-    {
-        var documents = _context.Datasets.ToList();
-        return View(documents);
-    }
-
-    [HttpGet]
-    public IActionResult AddDataset(AddDatasetViewModel model)
+    public IActionResult AddDataset()
     {
         var datasets = _context.Datasets.ToList();
         return View(datasets);
     }
+
+    [HttpPost]
+    public async Task<IActionResult> AddDataset(AddDatasetViewModel Dataset)
+    {
+        Dataset InputData = new Dataset
+        {
+            Title = Dataset.Title,
+            Description = Dataset.Description,
+            AccessLevel = Int32.Parse(Dataset.AccessLevel),
+        };
+        _context.Datasets.Add(InputData);
+        return View();
+    }
+
+
 
     public IActionResult RoleManagement()
     {
