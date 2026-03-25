@@ -21,14 +21,14 @@ public class AdminController : Controller
     [HttpGet]
     public IActionResult AddDocument()
     {
-        var documents = _context.Datasets.ToList;
+        var documents = _context.Datasets.ToList();
         return View(documents);
     }
 
     [HttpGet]
     public IActionResult AddDataset(AddDatasetViewModel model)
     {
-        var datasets = _context.Datasets.ToList;
+        var datasets = _context.Datasets.ToList();
         return View(datasets);
     }
 
