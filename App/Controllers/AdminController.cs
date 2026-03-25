@@ -21,8 +21,8 @@ public class AdminController : Controller
     [HttpGet]
     public IActionResult AddDataset()
     {
-        var datasets = _context.Datasets.ToList();
-        return View(datasets);
+        //var datasets = _context.Datasets.ToList();
+        return View();
     }
 
     [HttpPost]

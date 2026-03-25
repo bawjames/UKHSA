@@ -10,5 +10,5 @@ public class AddDatasetViewModel
 	public required string Description { get; set; }
 
 	[Required]
-	public required string AccessLevel;
+	public required string AccessLevel { get; set; }
 }
