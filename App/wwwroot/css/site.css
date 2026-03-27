@@ -115,6 +115,27 @@ select {
   transition: background-color 0.3s;
 }
 
+.nav-link:hover {
+  background-color: var(--nav-colour-hover);
+  color: white;
+}
+
+.nav-button{
+  background-color: var(--nav-colour);
+  display: block;
+  color: white;
+  padding: 15px 16px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: var(--nav-colour-hover);
+  color: white;
+}
+
 .nav-header {
   display: block;
   color: white;
@@ -122,10 +143,7 @@ select {
   text-decoration: none;
 }
 
-.nav-link:hover {
-  background-color: var(--nav-colour-hover);
-  color: white;
-}
+
 
 html {
   position: relative;
