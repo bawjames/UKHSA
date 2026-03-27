@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using UKHSA.Models;
+using System.Security.Principal;
 
 namespace UKHSA.Controllers;
 
@@ -29,6 +30,8 @@ public class AdminController : Controller
     [HttpPost]
     public async Task<IActionResult> AddDataset(AddDatasetViewModel Dataset)
     {
+
+        Console.WriteLine(Dataset.AccessLevel);
         Dataset InputData = new Dataset
         {
             Title = Dataset.Title,
