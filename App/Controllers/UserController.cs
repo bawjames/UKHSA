@@ -43,7 +43,7 @@ public class UserController : Controller
 
     public IActionResult RequestDocument()
     {
-        List<Dataset> datasets = _context.Datasets.ToList();
+        List<Dataset> datasets = _context.Datasets.OrderBy(e => e.Timestamp).ToList();
         return View(datasets);
     }
 
