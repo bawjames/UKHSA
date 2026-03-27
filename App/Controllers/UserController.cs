@@ -27,6 +27,7 @@ public class UserController : Controller
 
         var allRequests = _context.Requests
                           .Where(r => r.UserId == _userManager.GetUserId(User))
+                          .OrderBy(r => r.Timestamp)
                           .ToList();
 
         int totalItems = allRequests.Count();
@@ -43,7 +44,7 @@ public class UserController : Controller
 
     public IActionResult RequestDocument()
     {
-        List<Dataset> datasets = _context.Datasets.OrderBy(e => e.Timestamp).ToList();
+        List<Dataset> datasets = _context.Datasets.ToList();
         return View(datasets);
     }
 
