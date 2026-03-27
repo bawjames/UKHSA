@@ -9,7 +9,7 @@
     <table>
       <thead>
         <tr>
-          <th>Document</th>
+          <th>Dataset</th>
           <th>Status</th>
           <th>Notes</th>
           <th>Requested Date</th>
@@ -22,12 +22,12 @@
         @foreach (var request in Model.Items)
         {
           <tr>
-            <td>@request.Dataset.Title</td>
-            <td>@request.Approval.Approved</td>
-            <td>@request.Approval.RejectedReason</td>
+            <td>@request.Dataset?.Title</td>
+            <td>@request.Approval?.Approved</td>
+            <td>@request.Approval?.RejectedReason</td>
             <td>@request.Timestamp</td>
-            <td>@request.Approval.Timestamp</td>
-            <td>@request.Approval.Expires</td>
+            <td>@request.Approval?.Timestamp</td>
+            <td>@request.Approval?.Expires</td>
             <td> <button class="input-button">Extension</button></td>
           </tr>
         }
