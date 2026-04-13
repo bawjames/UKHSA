@@ -22,21 +22,40 @@ public class UserController : Controller
         return View();
     }
 
-    public IActionResult Requests(int page = 1, int perPage = 20)
+    public async Task<IActionResult> Requests(int page = 1, int perPage = 20)
     {
+        
 
-        var allRequests = _context.Requests
-                          .Where(r => r.UserId == _userManager.GetUserId(User))
-                          .OrderBy(r => r.Timestamp)
-                          .ToList();
+        var UserRequests = from Request r in _context.Requests
+                    join Dataset d in _context.Datasets
+                    on new {r.DatasetId} 
+                    equals new {d.Id}
+                    join Approval a in _context.Approvals
+                    on new {r.Id}
+                    equals new {a.RequestId}
+                    where r.UserId == _userManager.GetUserId(User)
+                    select new
+                    {
+                        Title = d.Title,
+                        Approved = a.Approved,
+                        Reason = a.RejectedReason,
+                        ReqTime = r.Timestamp,
+                        AppTime = a.Timestamp,
+                        AppExp = a.Expires
+                    }.OrderBy(r => r.Timestamp).ToList();
 
-        int totalItems = allRequests.Count();
+//        var allRequests = _context.Requests
+//                          .Where(r => r.UserId == _userManager.GetUserId(User))
+//                          .OrderBy(r => r.Timestamp)
+//                          .ToList();
+
+        int totalItems = UserRequests.Count();
 
         var model = new Paginated<Request> {
             CurrentPage = page,
             PerPage = perPage,
             TotalItems = totalItems,
-            Items = allRequests,
+            Items = UserRequests,
         };
 
         return View(model);
