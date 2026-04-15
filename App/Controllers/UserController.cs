@@ -40,12 +40,7 @@ public class UserController : Controller
                                 AppTime = a.Timestamp,
                                 AppExp = a.Expires
                             }).ToList();
-
-//        var allRequests = _context.Requests
-//                          .Where(r => r.UserId == _userManager.GetUserId(User))
-//                          .OrderBy(r => r.Timestamp)
-//                          .ToList();
-
+        
         int totalItems = UserRequests.Count();
         Console.WriteLine(totalItems);
 
