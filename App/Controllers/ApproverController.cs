@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using UKHSA.Models;
 using UKHSA.Shared;
@@ -10,19 +11,34 @@ namespace UKHSA.Controllers;
 public class ApproverController : Controller
 {
      protected readonly UKHSA_DbContext _context;
-    public ApproverController(UKHSA_DbContext context) => _context = context;
+    private readonly UserManager<User> _userManager;
+
+    public ApproverController(UKHSA_DbContext context, UserManager<User> userManager)
+    {
+        _context = context;
+        _userManager = userManager;
+    }
 
     public IActionResult ApproveRequest(int page = 1, int perPage = 20)
     {
 
         int totalItems = _context.Requests.Count();
         var requests = _context.Requests.ToList();
+        var ApproveRequest =    (from r in _context.Requests
+                                join d in _context.Datasets on r.DatasetId equals d.Id
+                                orderby r.Timestamp descending
+                                select new ApproveRequestDto
+                                {
+                                    Title = d.Title,
+                                    Username = r.User.Forename + " " + r.User.Surname, // need to change
+                                    Timestamp = r.Timestamp
+                                }).ToList();
 
-        var model = new Paginated<Request> {
+        var model = new Paginated<ApproveRequestDto> {
             CurrentPage = page,
             PerPage = perPage,
             TotalItems = totalItems,
-            Items = requests,
+            Items = ApproveRequest,
         };
 
         return View(model);
