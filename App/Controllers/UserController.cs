@@ -26,23 +26,20 @@ public class UserController : Controller
     {
         
 
-        var UserRequests = from Request r in _context.Requests
-                    join Dataset d in _context.Datasets
-                    on new {r.DatasetId} 
-                    equals new {d.Id}
-                    join Approval a in _context.Approvals
-                    on new {r.Id}
-                    equals new {a.RequestId}
-                    where r.UserId == _userManager.GetUserId(User)
-                    select new
-                    {
-                        Title = d.Title,
-                        Approved = a.Approved,
-                        Reason = a.RejectedReason,
-                        ReqTime = r.Timestamp,
-                        AppTime = a.Timestamp,
-                        AppExp = a.Expires
-                    }.OrderBy(r => r.Timestamp).ToList();
+        var UserRequests = (from r in _context.Requests
+                            join d in _context.Datasets on r.DatasetId equals d.Id
+                            join a in _context.Approvals on r.Id equals a.RequestId
+                            where r.UserId == _userManager.GetUserId(User)
+                            orderby r.Timestamp
+                            select new RequestsDto
+                            {
+                                Title = d.Title,
+                                Approved = a.Approved,
+                                Reason = a.RejectedReason,
+                                ReqTime = r.Timestamp,
+                                AppTime = a.Timestamp,
+                                AppExp = a.Expires
+                            }).ToList();
 
 //        var allRequests = _context.Requests
 //                          .Where(r => r.UserId == _userManager.GetUserId(User))
@@ -50,8 +47,9 @@ public class UserController : Controller
 //                          .ToList();
 
         int totalItems = UserRequests.Count();
+        Console.WriteLine(totalItems);
 
-        var model = new Paginated<Request> {
+        var model = new Paginated<RequestsDto> {
             CurrentPage = page,
             PerPage = perPage,
             TotalItems = totalItems,
