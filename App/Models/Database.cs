@@ -24,10 +24,10 @@ public class Request
     public DateTime Timestamp { get; set; }
 
     public required string UserId { get; set; }
-    public required User User { get; set; }
+    public User? User { get; set; }
 
     public int DatasetId { get; set; }
-    public required Dataset Dataset { get; set; }
+    public Dataset? Dataset { get; set; }
 
     public Approval? Approval { get; set; }
 }
@@ -52,5 +52,5 @@ public class Approval
 
     public int RequestId { get; set; }
     [ForeignKey(nameof(RequestId))]
-    public required Request Request { get; set; }
+    public Request? Request { get; set; }
 }

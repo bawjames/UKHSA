@@ -22,30 +22,25 @@ public class UserController : Controller
         return View();
     }
 
-    public async Task<IActionResult> Requests(int page = 1, int perPage = 20)
+    public IActionResult Requests(int page = 1, int perPage = 20)
     {
         
 
         var UserRequests = (from r in _context.Requests
                             join d in _context.Datasets on r.DatasetId equals d.Id
-                            join a in _context.Approvals on r.Id equals a.RequestId
+                            //join a in _context.Approvals on r.Id equals a.RequestId
                             where r.UserId == _userManager.GetUserId(User)
                             orderby r.Timestamp
                             select new RequestsDto
                             {
                                 Title = d.Title,
-                                Approved = a.Approved,
-                                Reason = a.RejectedReason,
+                                Approved = false,
+                                Reason = "Pending",
                                 ReqTime = r.Timestamp,
-                                AppTime = a.Timestamp,
-                                AppExp = a.Expires
+                                AppTime = DateTime.MinValue,
+                                AppExp = DateTime.MinValue
                             }).ToList();
-
-//        var allRequests = _context.Requests
-//                          .Where(r => r.UserId == _userManager.GetUserId(User))
-//                          .OrderBy(r => r.Timestamp)
-//                          .ToList();
-
+        
         int totalItems = UserRequests.Count();
         Console.WriteLine(totalItems);
 
@@ -59,10 +54,27 @@ public class UserController : Controller
         return View(model);
     }
 
+    [HttpGet]
     public IActionResult RequestDocument()
     {
         List<Dataset> datasets = _context.Datasets.ToList();
         return View(datasets);
+    }
+
+    [HttpPost]
+        public IActionResult RequestDocument(int DatasetId, int AccessLevel, string Purpose)
+    {
+        var request = new Request
+        {
+            DatasetId = DatasetId,
+            UserId = _userManager.GetUserId(User),
+            Timestamp = DateTime.UtcNow
+        };
+
+        _context.Requests.Add(request);
+        _context.SaveChanges();
+
+        return RedirectToAction("Requests");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
