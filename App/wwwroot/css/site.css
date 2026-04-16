@@ -98,6 +98,13 @@ select {
 
 .navbar-container {
   background-color: var(--nav-colour);
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img{
+  height: 50px;
+  display: block;
 }
 
 .navbar-items {
@@ -105,6 +112,7 @@ select {
   margin: 0;
   padding: 0;
   display: flex;
+  margin-left: auto;
 }
 
 .nav-link {
