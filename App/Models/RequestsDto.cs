@@ -12,7 +12,7 @@ public class RequestsDto
     [Required]
     public required DateTime ReqTime {get; set;}
     [Required]
-    public required DateTime AppTime {get; set;}
+    public required string AppTime {get; set;}
     [Required]
-    public required DateTime AppExp {get; set;}
+    public required string AppExp {get; set;}
 }
