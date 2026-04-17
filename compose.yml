@@ -2,6 +2,7 @@ services:
   db:
     container_name: ukhsa-db
     image: postgres:latest
+    command: ["postgres", "-c", "log_statement=all"]
     ports:
       - 5432:5432
     environment:
