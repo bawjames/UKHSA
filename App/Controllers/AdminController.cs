@@ -8,7 +8,7 @@ using System.Security.Principal;
 
 namespace UKHSA.Controllers;
 
-// [Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin")]
 public class AdminController : Controller
 {
     private readonly UserManager<User> _userManager;
