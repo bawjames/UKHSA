@@ -1,11 +1,13 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UKHSA.Models;
 using UKHSA.Shared;
 
 namespace UKHSA.Controllers;
 
+[Authorize(Roles = "User")]
 public class UserController : Controller
 {
     protected readonly UKHSA_DbContext _context;
@@ -24,7 +26,6 @@ public class UserController : Controller
 
     public IActionResult Requests(int page = 1, int perPage = 20)
     {
-        
 
         var UserRequests = (from r in _context.Requests
                             join d in _context.Datasets on r.DatasetId equals d.Id
