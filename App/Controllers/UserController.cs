@@ -29,17 +29,18 @@ public class UserController : Controller
 
         var UserRequests = (from r in _context.Requests
                             join d in _context.Datasets on r.DatasetId equals d.Id
-                            //join a in _context.Approvals on r.Id equals a.RequestId
+                            join a in _context.Approvals on r.Id equals a.RequestId into Approvals
+                            from a in Approvals.DefaultIfEmpty()
                             where r.UserId == _userManager.GetUserId(User)
                             orderby r.Timestamp
                             select new RequestsDto
                             {
                                 Title = d.Title,
-                                Approved = false,
-                                Reason = "Pending",
+                                Approved = a!= null ? a.Approved : false,
+                                Reason = a != null ? a.RejectedReason : "Pending",
                                 ReqTime = r.Timestamp,
-                                AppTime = DateTime.MinValue,
-                                AppExp = DateTime.MinValue
+                                AppTime = a.Timestamp != null ? a.Timestamp.ToString("dd/MM/yyyy HH:mm:ss") : String.Empty,
+                                AppExp = a.Expires != null ? a.Expires.ToString("dd/MM/yyyy HH:mm:ss") : String.Empty
                             }).ToList();
         
         int totalItems = UserRequests.Count();
