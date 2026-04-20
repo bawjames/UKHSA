@@ -56,9 +56,9 @@ class Program
                 var _ = await roleManager.CreateAsync(new IdentityRole(role));
             }
 
-            UserManager<User> _userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-            User user = await _userManager.FindByEmailAsync("james@jamesbaw.com");
-            var result = await _userManager.AddToRoleAsync(user, "Admin");
+            //UserManager<User> _userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+            //User user = await _userManager.FindByEmailAsync("james@jamesbaw.com");
+            //var result = await _userManager.AddToRoleAsync(user, "Admin");
         }
 
         app.UseHttpsRedirection();

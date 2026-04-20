@@ -7,7 +7,7 @@ using UKHSA.Shared;
 
 namespace UKHSA.Controllers;
 
-[Authorize(Roles = "User")]
+//[Authorize(Roles = "User")]
 public class UserController : Controller
 {
     protected readonly UKHSA_DbContext _context;
