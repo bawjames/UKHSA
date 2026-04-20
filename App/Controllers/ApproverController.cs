@@ -25,6 +25,7 @@ public class ApproverController : Controller
 
         var ApproveRequest =    (from r in _context.Requests
                                 join d in _context.Datasets on r.DatasetId equals d.Id
+                                where r.Approval != null
                                 orderby r.Timestamp descending
                                 select new ApproveRequestDto
                                 {
