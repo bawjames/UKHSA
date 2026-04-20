@@ -2,9 +2,8 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
 using UKHSA.Models;
-using System.Security.Principal;
+using UKHSA.Shared;
 
 namespace UKHSA.Controllers;
 
@@ -43,11 +42,43 @@ public class AdminController : Controller
         return Redirect("/");
     }
 
-
-
-    public IActionResult RoleManagement()
+    [HttpGet]
+    public IActionResult RoleManagement(int page = 1, int perPage = 20)
     {
-        return View();
+        var users = _context.Users.ToList();
+        var items = users
+        .Select(user => (user, roles: _userManager.GetRolesAsync(user).Result))
+        .ToList();
+
+        var model = new Paginated<(User user, IList<string> roles)> {
+            CurrentPage = page,
+            PerPage = perPage,
+            Items = items
+        };
+
+        return View(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> RoleManagement(RoleManagementViewModel model)
+    {
+        if (model == null)
+        {
+            return BadRequest("Invalid form data.");
+        }
+
+        var user = await _userManager.FindByIdAsync(model.UserId);
+
+        if (model.IsUser) await _userManager.AddToRoleAsync(user, "User");
+        else await _userManager.RemoveFromRoleAsync(user, "User");
+
+        if (model.IsApprover) await _userManager.AddToRoleAsync(user, "Approver");
+        else await _userManager.RemoveFromRoleAsync(user, "Approver");
+
+        if (model.IsAdmin) await _userManager.AddToRoleAsync(user, "Admin");
+        else await _userManager.RemoveFromRoleAsync(user, "Admin");
+
+        return RedirectToAction(nameof(RoleManagement));
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

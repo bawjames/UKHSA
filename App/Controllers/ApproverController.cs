@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -8,7 +7,7 @@ using UKHSA.Shared;
 
 namespace UKHSA.Controllers;
 
-[Authorize(Roles = "Approver, Admin")]
+[Authorize(Roles = "Admin")]
 public class ApproverController : Controller
 {
      protected readonly UKHSA_DbContext _context;
@@ -37,23 +36,21 @@ public class ApproverController : Controller
                                     Username = r.User.Forename + " " + r.User.Surname, // need to change
                                     Timestamp = r.Timestamp
                                 }).ToList();
-        int totalItems = ApproveRequest.Count();
 
         var model = new Paginated<ApproveRequestDto> {
             CurrentPage = page,
             PerPage = perPage,
-            TotalItems = totalItems,
             Items = ApproveRequest,
         };
 
-        return View (model);
+        return View(model);
     }
 
     [HttpPost]
     public IActionResult ApproveRequest(int requestId)
     {
         var request = _context.Requests
-        .Include(r => r.Approval)
+        // .Include(r => r.Approval)
         .FirstOrDefault(r => r.Id == requestId);
 
 
