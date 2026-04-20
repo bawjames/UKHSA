@@ -37,7 +37,7 @@ public class UserController : Controller
                             {
                                 Title = d.Title,
                                 Approved = a!= null ? a.Approved : false,
-                                Reason = a != null ? a.RejectedReason : "Pending",
+                                Reason = a != null ? a.RejectedReason : "Unclear",
                                 ReqTime = r.Timestamp,
                                 AppTime = a.Timestamp != null ? a.Timestamp.ToString("dd/MM/yyyy HH:mm:ss") : String.Empty,
                                 AppExp = a.Expires != null ? a.Expires.ToString("dd/MM/yyyy HH:mm:ss") : String.Empty

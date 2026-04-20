@@ -19,6 +19,7 @@ public class ApproverController : Controller
         _userManager = userManager;
     }
 
+    [HttpGet]
     public IActionResult ApproveRequest(int page = 1, int perPage = 20)
     {
 
@@ -26,9 +27,11 @@ public class ApproverController : Controller
         //var requests = _context.Requests.ToList();
         var ApproveRequest =    (from r in _context.Requests
                                 join d in _context.Datasets on r.DatasetId equals d.Id
+                                join u in _context.Users on r.UserId equals u.Id
                                 orderby r.Timestamp descending
                                 select new ApproveRequestDto
                                 {
+                                    Id = r.Id,
                                     Title = d.Title,
                                     Username = r.User.Forename + " " + r.User.Surname, // need to change
                                     Timestamp = r.Timestamp
@@ -42,13 +45,40 @@ public class ApproverController : Controller
             Items = ApproveRequest,
         };
 
-        return View(model);
+        return RedirectToAction("ApproveRequest");
     }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
+    [HttpPost]
+    public IActionResult ApproveRequest(int requestId)
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        var request = _context.Requests.Find(requestId);
+
+        if (request == null)
+        {
+        return View (model);
+        }
+
+        if (request.Approval == null)
+        {
+            request.Approval = new Approval
+            {
+                Request = request,
+                Approved = true,
+                RejectedReason = null,
+                Timestamp = DateTime.UtcNow,
+                Expires = DateTime.UtcNow.AddYears(1)
+            };
+        }
+        else
+        {
+        request.Approval.Approved = true;
+        request.Approval.RejectedReason = null;
+        request.Approval.Timestamp = DateTime.UtcNow;
+        }
+
+        _context.SaveChanges();
+
+        return RedirectToAction("ApproveRequest");
     }
 
     [HttpGet]
@@ -80,6 +110,13 @@ public class ApproverController : Controller
         request.Approval.Timestamp = DateTime.UtcNow;
         }
 
+        _context.SaveChanges();
+
         return RedirectToAction("ApproveRequest");
+    }
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
