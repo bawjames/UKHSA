@@ -11,10 +11,12 @@ namespace UKHSA.Controllers;
 public class AdminController : Controller
 {
     private readonly UserManager<User> _userManager;
+    private readonly SignInManager<User> _signInManager;
     protected readonly UKHSA_DbContext _context;
 
-    public AdminController(UserManager<User> userManager, UKHSA_DbContext context)
+    public AdminController(UserManager<User> userManager, UKHSA_DbContext context, SignInManager<User> signInManager)
     {
+        _signInManager = signInManager;
         _userManager = userManager;
         _context = context;
     }
@@ -78,6 +80,7 @@ public class AdminController : Controller
         if (model.IsAdmin) await _userManager.AddToRoleAsync(user, "Admin");
         else await _userManager.RemoveFromRoleAsync(user, "Admin");
 
+        await _signInManager.RefreshSignInAsync(user);
         return RedirectToAction(nameof(RoleManagement));
     }
 

@@ -7,10 +7,10 @@ using UKHSA.Shared;
 
 namespace UKHSA.Controllers;
 
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Approver")]
 public class ApproverController : Controller
 {
-     protected readonly UKHSA_DbContext _context;
+    protected readonly UKHSA_DbContext _context;
     private readonly UserManager<User> _userManager;
 
     public ApproverController(UKHSA_DbContext context, UserManager<User> userManager)

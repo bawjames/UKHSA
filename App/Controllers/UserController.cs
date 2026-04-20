@@ -19,6 +19,7 @@ public class UserController : Controller
         _userManager = userManager;
     }
 
+    [AllowAnonymous]
     public IActionResult Home()
     {
         return View();
