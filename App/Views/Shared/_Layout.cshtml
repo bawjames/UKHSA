@@ -2,31 +2,24 @@
 @using System.Diagnostics.Eventing.Reader
 @{
 var headerAnchors = new List<IHtmlContent>();
-  
+
   if (User.Identity.IsAuthenticated) // if the user is logged in
   {
-    if (User.IsInRole("User")){
-      headerAnchors.Add(Html.ActionLink("GOV·UK", "Home", "User", null, new { @class = "nav-link" }));
-      headerAnchors.Add(Html.ActionLink("My Requests", "Requests", "User", null, new { @class = "nav-link" }));
-      headerAnchors.Add(Html.ActionLink("Request Datasaet", "RequestDocument", "User", null, new {@class = "nav-link"}));
-    };
+  if (User.IsInRole("Admin")){
+  headerAnchors.Add(Html.ActionLink("GOV·UK", "Home", "Admin", null, new { @class = "nav-link" }));
+  headerAnchors.Add(Html.ActionLink("Add Dataset", "AddDataset", "Admin", null, new {@class = "nav-link"}));
+  headerAnchors.Add(Html.ActionLink("Manage Roles", "RoleManagement", "Admin", null, new {@class = "nav-link"}));
+  }
+  else if (User.IsInRole("Approver")){
+  headerAnchors.Add(Html.ActionLink("GOV·UK", "Home", "Approver", null, new { @class = "nav-link" }));
+  headerAnchors.Add(Html.ActionLink("Approve Request", "ApproveRequest", "Approver", null, new {@class = "nav-link"}));
+  }
+  else if (User.IsInRole("User")){
+  headerAnchors.Add(Html.ActionLink("GOV·UK", "Home", "User", null, new { @class = "nav-link" }));
+  headerAnchors.Add(Html.ActionLink("My Requests", "Requests", "User", null, new { @class = "nav-link" }));
+  headerAnchors.Add(Html.ActionLink("Request Datasaet", "RequestDocument", "User", null, new {@class = "nav-link"}));
+  };
 
-    if (User.IsInRole("Approver")){
-      headerAnchors.Add(Html.ActionLink("GOV·UK", "Home", "Approver", null, new { @class = "nav-link" }));
-      headerAnchors.Add(Html.ActionLink("My Requests", "Requests", "User", null, new { @class = "nav-link" }));
-      headerAnchors.Add(Html.ActionLink("Request Datasaet", "RequestDocument", "User", null, new {@class = "nav-link"}));
-      headerAnchors.Add(Html.ActionLink("Approve Request", "ApproveRequest", "Approver", null, new {@class = "nav-link"}));
-    }; 
-
-    if (User.IsInRole("Admin")){
-      headerAnchors.Add(Html.ActionLink("GOV·UK", "Home", "Admin", null, new { @class = "nav-link" }));
-      headerAnchors.Add(Html.ActionLink("My Requests", "Requests", "User", null, new { @class = "nav-link" }));
-      headerAnchors.Add(Html.ActionLink("Request Datasaet", "RequestDocument", "User", null, new {@class = "nav-link"}));
-      headerAnchors.Add(Html.ActionLink("Approve Request", "ApproveRequest", "Approver", null, new {@class = "nav-link"}));
-      headerAnchors.Add(Html.ActionLink("Add Dataset", "AddDataset", "Admin", null, new {@class = "nav-link"}));
-      headerAnchors.Add(Html.ActionLink("Manage Roles", "RoleManagement", "Admin", null, new {@class = "nav-link"}));
-    };
-  
   };
 
   if (!User.Identity.IsAuthenticated) // if the user is not logged in
@@ -52,11 +45,11 @@ var headerAnchors = new List<IHtmlContent>();
     <header>
       <div class="navbar-container">
 
-      <div class="navbar-logo">
-      <a>
-      <img src="/Images/UKHSA_Logo.png" alt="UKHSA Logo"/>
-      </a>
-      </div>
+        <div class="navbar-logo">
+          <a>
+            <img src="/Images/UKHSA_Logo.png" alt="UKHSA Logo" />
+          </a>
+        </div>
 
         <ul class="navbar-items">
           @foreach (var anchor in headerAnchors)
