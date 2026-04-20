@@ -23,11 +23,8 @@ public class ApproverController : Controller
     public IActionResult ApproveRequest(int page = 1, int perPage = 20)
     {
 
-        //int totalItems = _context.Requests.Count();
-        //var requests = _context.Requests.ToList();
         var ApproveRequest =    (from r in _context.Requests
                                 join d in _context.Datasets on r.DatasetId equals d.Id
-                                join u in _context.Users on r.UserId equals u.Id
                                 orderby r.Timestamp descending
                                 select new ApproveRequestDto
                                 {
@@ -36,6 +33,7 @@ public class ApproverController : Controller
                                     Username = r.User.Forename + " " + r.User.Surname, // need to change
                                     Timestamp = r.Timestamp
                                 }).ToList();
+        int totalItems = ApproveRequest.Count();
 
         var model = new Paginated<ApproveRequestDto> {
             CurrentPage = page,
