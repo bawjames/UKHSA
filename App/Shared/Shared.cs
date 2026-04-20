@@ -2,21 +2,21 @@ namespace UKHSA.Shared;
 
 public class Paginated<T>
 {
-    List<T> _items;
+    List<T> _allItems;
     public List<T> Items
     {
-        get { return _items; }
-        set
+        get
         {
-            _items = value
+            return _allItems
             .Skip((CurrentPage - 1) * PerPage)
             .Take(PerPage)
             .ToList();
         }
+        set { _allItems = value; }
     }
 
-    public int TotalItems { get; set; }
     public int CurrentPage { get; set; } = 1;
     public int PerPage { get; set; } = 20;
-    public int TotalPages => (int)Math.Ceiling(TotalItems / (double)PerPage);
+    public int TotalItems => _allItems.Count;
+    public int TotalPages => (int)Math.Ceiling(_allItems.Count / (double)PerPage);
 }

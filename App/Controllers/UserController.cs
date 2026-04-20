@@ -7,7 +7,7 @@ using UKHSA.Shared;
 
 namespace UKHSA.Controllers;
 
-//[Authorize(Roles = "User")]
+[Authorize(Roles = "User")]
 public class UserController : Controller
 {
     protected readonly UKHSA_DbContext _context;
@@ -19,6 +19,7 @@ public class UserController : Controller
         _userManager = userManager;
     }
 
+    [AllowAnonymous]
     public IActionResult Home()
     {
         return View();
@@ -37,19 +38,18 @@ public class UserController : Controller
                             {
                                 Title = d.Title,
                                 Approved = a!= null ? a.Approved : false,
-                                Reason = a != null ? a.RejectedReason : "Pending",
+                                Reason = a != null ? a.RejectedReason : "Unclear",
                                 ReqTime = r.Timestamp,
                                 AppTime = a.Timestamp != null ? a.Timestamp.ToString("dd/MM/yyyy HH:mm:ss") : String.Empty,
                                 AppExp = a.Expires != null ? a.Expires.ToString("dd/MM/yyyy HH:mm:ss") : String.Empty
                             }).ToList();
-        
-        int totalItems = UserRequests.Count();
-        Console.WriteLine(totalItems);
+
+        // int totalItems = UserRequests.Count();
+        // Console.WriteLine(totalItems);
 
         var model = new Paginated<RequestsDto> {
             CurrentPage = page,
             PerPage = perPage,
-            TotalItems = totalItems,
             Items = UserRequests,
         };
 

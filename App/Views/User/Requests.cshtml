@@ -1,29 +1,29 @@
 @using UKHSA.Models
 @using UKHSA.Shared
 @model Paginated<RequestsDto>
-@{
+  @{
   ViewData["Title"] = "My Requests Page";
-}
+  }
 
-<div class="text-center">
-  <br />
-  <div class="table-container">
-    <h1>My Requests</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Dataset</th>
-          <th>Status</th>
-          <th>Notes</th>
-          <th>Requested Date</th>
-          <th>Approved Date</th>
-          <th>Expiry Date</th>
-          <th>Request Extension</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach (var request in Model.Items)
-        {
+  <div class="text-center">
+    <br />
+    <div class="table-container">
+      <h1>My Requests</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th>Status</th>
+            <th>Notes</th>
+            <th>Requested Date</th>
+            <th>Approved Date</th>
+            <th>Expiry Date</th>
+            <th>Request Extension</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var request in Model.Items)
+          {
           <tr>
             <td>@request.Title</td>
             <td>@request.Approved</td>
@@ -33,21 +33,20 @@
             <td>@request.AppExp</td>
             <td> <button class="input-button">Extension</button></td>
           </tr>
-        }
-      </tbody>
-    </table>
-    <div>
-      @if (Model.CurrentPage > 1)
-      {
+          }
+        </tbody>
+      </table>
+      <div>
+        @if (Model.CurrentPage > 1)
+        {
         <a asp-action="Requests" asp-route-page="@(Model.CurrentPage - 1)">Previous</a>
-      }
+        }
 
-      <span>Page @Model.CurrentPage of @Model.TotalPages</span>
+        <span>Page @Model.CurrentPage of @Model.TotalPages</span>
 
-      @if (Model.CurrentPage < Model.TotalPages)
-      {
-      <a asp-action="Requests" asp-route-page="@(Model.CurrentPage + 1)">Next</a>
-      }
+        @if (Model.CurrentPage < Model.TotalPages) { <a asp-action="Requests" asp-route-page="@(Model.CurrentPage + 1)">
+          Next</a>
+          }
+      </div>
     </div>
   </div>
-</div>
