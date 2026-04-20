@@ -44,8 +44,7 @@ public class UserController : Controller
                                 AppExp = a.Expires != null ? a.Expires.ToString("dd/MM/yyyy HH:mm:ss") : String.Empty
                             }).ToList();
 
-        // int totalItems = UserRequests.Count();
-        // Console.WriteLine(totalItems);
+        int totalItems = UserRequests.Count();
 
         var model = new Paginated<RequestsDto> {
             CurrentPage = page,
