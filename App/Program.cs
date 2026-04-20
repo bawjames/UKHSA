@@ -58,7 +58,7 @@ class Program
 
             UserManager<User> _userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
             User user = await _userManager.FindByEmailAsync("admin@example.com");
-            var result = await _userManager.AddToRoleAsync(user, "Admin");
+            if (user != null) await _userManager.AddToRoleAsync(user, "Admin");
         }
 
         app.UseHttpsRedirection();
