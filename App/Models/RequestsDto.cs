@@ -15,4 +15,5 @@ public class RequestsDto
     public required string AppTime {get; set;}
     [Required]
     public required string AppExp {get; set;}
+    public required string ViewDataset {get; set;}
 }

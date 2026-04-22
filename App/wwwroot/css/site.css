@@ -90,7 +90,19 @@ html {
   cursor: pointer;
   transition: box-shadow 0.2s, background-color 0.2s;
 }
+.input-button:disabled {
+  display: block;
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--button-hover);
+  color: white;
+  border: thin solid var(--button-border);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
 
+<<<<<<< HEAD
 .text-area {
   border: solid 2px;
   display: block;
@@ -106,6 +118,20 @@ html {
   margin: auto;
   width: auto;
   resize: vertical;
+=======
+.input-button:disabled {
+  display: block;
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--button-disabled);
+  color: white;
+  border: thin solid var(--button-border);
+  cursor: pointer;
+  box-shadow: 0px 0px 0px var(--shadow) !important;
+  transition: box-shadow 0.2s, background-color 0.2s;
+  
+>>>>>>> dfd2a3eb1b193a2958be12a00f761c41642857c6
 }
 
 select {
@@ -217,10 +243,11 @@ select:hover {
 }
 
 .nav-button{
+  font-size: 1rem;
   background-color: var(--nav-colour);
   display: block;
   color: white;
-  padding: 15px 16px;
+  padding: 12px 16px;
   text-decoration: none;
   border: none;
   cursor: pointer;

@@ -39,8 +39,9 @@ public class UserController : Controller
                                 Approved = a!= null ? a.Approved : false,
                                 Reason = a != null ? a.RejectedReason : "Pending",
                                 ReqTime = r.Timestamp,
-                                AppTime = a.Timestamp != null ? a.Timestamp.ToString("dd/MM/yyyy HH:mm:ss") : String.Empty,
-                                AppExp = a.Expires != null ? a.Expires.ToString("dd/MM/yyyy HH:mm:ss") : String.Empty
+                                AppTime = a.Timestamp != null ? a.Timestamp.ToString("dd/MM/yyyy HH:mm:ss") : "Pending Approval",
+                                AppExp = a.Expires != null ? a.Expires.ToString("dd/MM/yyyy HH:mm:ss") : String.Empty,
+                                ViewDataset = r.Approval != null ? String.Empty : "disabled" 
                             }).ToList();
         
         int totalItems = UserRequests.Count();
