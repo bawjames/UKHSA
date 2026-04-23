@@ -2,7 +2,6 @@ services:
   db:
     container_name: ukhsa-db
     image: postgres:latest
-    command: ["postgres", "-c", "log_statement=all"]
     ports:
       - 5432:5432
     environment:
@@ -15,12 +14,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    command: >
-      postgres
-      -c log_statement=all
-      -c log_duration=on
-      -c log_min_duration_statement=0
-      -c logging_collector=on
   update:
     container_name: ukhsa-update
     build:

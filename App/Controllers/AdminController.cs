@@ -2,21 +2,20 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using UKHSA.Models;
-using UKHSA.Shared;
+using System.Security.Principal;
 
 namespace UKHSA.Controllers;
 
-[Authorize(Roles = "Admin")]
+//[Authorize(Roles = "Admin")]
 public class AdminController : Controller
 {
     private readonly UserManager<User> _userManager;
-    private readonly SignInManager<User> _signInManager;
     protected readonly UKHSA_DbContext _context;
 
-    public AdminController(UserManager<User> userManager, UKHSA_DbContext context, SignInManager<User> signInManager)
+    public AdminController(UserManager<User> userManager, UKHSA_DbContext context)
     {
-        _signInManager = signInManager;
         _userManager = userManager;
         _context = context;
     }
@@ -24,6 +23,7 @@ public class AdminController : Controller
     [HttpGet]
     public IActionResult AddDataset()
     {
+        //var datasets = _context.Datasets.ToList();
         return View();
     }
 
@@ -43,44 +43,11 @@ public class AdminController : Controller
         return Redirect("/");
     }
 
-    [HttpGet]
-    public IActionResult RoleManagement(int page = 1, int perPage = 20)
+
+
+    public IActionResult RoleManagement()
     {
-        var users = _context.Users.ToList();
-        var items = users
-        .Select(user => (user, roles: _userManager.GetRolesAsync(user).Result))
-        .ToList();
-
-        var model = new Paginated<(User user, IList<string> roles)> {
-            CurrentPage = page,
-            PerPage = perPage,
-            Items = items
-        };
-
-        return View(model);
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> RoleManagement(RoleManagementViewModel model)
-    {
-        if (model == null)
-        {
-            return BadRequest("Invalid form data.");
-        }
-
-        var user = await _userManager.FindByIdAsync(model.UserId);
-
-        if (model.IsUser) await _userManager.AddToRoleAsync(user, "User");
-        else await _userManager.RemoveFromRoleAsync(user, "User");
-
-        if (model.IsApprover) await _userManager.AddToRoleAsync(user, "Approver");
-        else await _userManager.RemoveFromRoleAsync(user, "Approver");
-
-        if (model.IsAdmin) await _userManager.AddToRoleAsync(user, "Admin");
-        else await _userManager.RemoveFromRoleAsync(user, "Admin");
-
-        await _signInManager.RefreshSignInAsync(user);
-        return RedirectToAction(nameof(RoleManagement));
+        return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

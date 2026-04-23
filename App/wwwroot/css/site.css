@@ -43,35 +43,51 @@ html {
   margin-right: auto;
   width: calc(100% - 22px);
   padding: 10px;
-  text-align: center;
+  text-align: left;
   margin-bottom: 10px;
-  border: none;
+  border: solid 2px;
+  border-radius: 0px;
+}
+
+.input-box:hover {
+  border: solid 3px;
+  outline: solid 3px var(--hover-yellow);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - 22px);
+  padding: 10px;
+  text-align: left;
+  margin-bottom: 10px;
   border-radius: 0px;
 }
 
 .input-button {
+  letter-spacing: 0.5px;
   display: block;
   margin: auto;
-  width: 100%;
+  width: auto;
   padding: 10px;
   background-color: var(--button);
   color: white;
-  border: thin solid var(--button-border);
+  border: none;
+  border-bottom: solid 2px var(--button-border);
   cursor: pointer;
   box-shadow: none;
   transition: box-shadow 0.4s, background-color 0.4s;
 }
 
 .input-button:hover {
+  letter-spacing: 0.5px;
   display: block;
   margin: auto;
-  width: 100%;
+  width: auto;
   padding: 10px;
   background-color: var(--button-hover);
   color: white;
-  border: thin solid var(--button-border);
+  border: none;
+  border-bottom: solid 2px var(--button-border);
   cursor: pointer;
-  box-shadow: 0px 3px 3px var(--shadow);
   transition: box-shadow 0.2s, background-color 0.2s;
 }
 .input-button:disabled {
@@ -86,6 +102,23 @@ html {
   transition: background-color 0.2s;
 }
 
+<<<<<<< HEAD
+.text-area {
+  border: solid 2px;
+  display: block;
+  margin: auto;
+  width: auto;
+  resize: vertical;
+}
+
+.text-area:hover {
+  border: solid 3px;
+  outline: solid 3px var(--hover-yellow);
+  display: block;
+  margin: auto;
+  width: auto;
+  resize: vertical;
+=======
 .input-button:disabled {
   display: block;
   margin: auto;
@@ -98,26 +131,83 @@ html {
   box-shadow: 0px 0px 0px var(--shadow) !important;
   transition: box-shadow 0.2s, background-color 0.2s;
   
+>>>>>>> dfd2a3eb1b193a2958be12a00f761c41642857c6
 }
 
 select {
   -webkit-border-radius: 0;
   border-radius: 0px;
-  background-color: var(--nav-colour);
   /* Fallback color if gradients are not supported */
   background-position: center right;
   background-repeat: no-repeat;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-  border: none;
-  color: white;
+  border: solid 2px;
+  background-color: white;
   font-size: inherit;
   margin: 0;
   overflow: hidden;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding: 4px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+select:hover {
+  -webkit-border-radius: 0;
+  border-radius: 0px;
+  /* Fallback color if gradients are not supported */
+  background-position: center right;
+  background-repeat: no-repeat;
+  border: solid 3px;
+  outline: solid 3px var(--hover-yellow);
+  background-color: white;
+  font-size: inherit;
+  margin: 0;
+  overflow: hidden;
+  padding: 4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.login-container input[type="radio"] {
+    appearance: none;
+    cursor: pointer;
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    vertical-align: auto;
+    margin-top: 0;
+
+    border: 2px solid var(--button-border);
+    border-radius: 50%;
+    background-color: white;
+    display: grid;
+    place-content: center;
+}
+
+.login-container input[type="radio"]:checked::before {
+    content: "";
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: var(--button-border); 
+}
+
+.login-container input[type="radio"]:checked {
+    border: 3px solid var(--button-border);
+    outline: 3px solid var(--hover-yellow);
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;    
+    margin-bottom: 10px;
+}
+
+.radio-button {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+}
+
 
 
 .navbar-container {
@@ -136,7 +226,7 @@ select {
   margin: 0;
   padding: 0;
   display: flex;
-  margin-left: auto;
+  margin-right: auto;
 }
 
 .nav-link {

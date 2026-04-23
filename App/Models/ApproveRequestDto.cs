@@ -1,8 +1,9 @@
 namespace UKHSA.Models;
 using System.ComponentModel.DataAnnotations;
 
-public class ApproveRequestDto
+class ApproveRequestDto
 {
+    public int User{ get; set; }
     public int Id { get; set; }
     [Required]
     public required string Title {get; set;}

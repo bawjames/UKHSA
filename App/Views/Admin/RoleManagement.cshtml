@@ -1,46 +1,46 @@
-@using UKHSA.Models
-@using UKHSA.Shared
-@model Paginated<(User user, IList<string> roles)>
-  @{
+@{
   ViewData["Title"] = "Role Management";
-  }
+}
 
-  <div class="input-box">
+<div class="input-box">
 
-    <h1>Manage Roles</h1>
+    <h1> Manage Roles</h1>
 
     <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>User</th>
-          <th>Approver</th>
-          <th>Admin</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach ((User user, IList<string> roles) in Model.Items)
-          {
-          <tr>
-            <form method="post">
-              <td>@user.Forename @user.Surname</td>
-              <td>@user.Email</td>
-              <td><input type="checkbox" name="IsUser" @(roles.Contains("User") ? "checked" : "" ) value="true" /></td>
-              <td><input type="checkbox" name="IsApprover" @(roles.Contains("Approver") ? "checked" : "" )
-                  value="true" /></td>
-              <td><input type="checkbox" name="IsAdmin" @(roles.Contains("Admin") ? "checked" : "" ) value="true" />
-              </td>
-              <td>
-                <input type="hidden" name="UserId" value="@user.Id" />
-                <button type="submit" class="input-button">
-                  Save
-                </button>
-              </td>
-            </form>
-          </tr>
-          }
-      </tbody>
+        <thead>
+            <tr>
+                <th>UserID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>User</th>
+                <th>Approver</th>
+                <th>Admin</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <form>
+                <td>1</td>
+                
+                <td>Luke Boothby</td>
+
+                <td>luke@luke.com</td>
+                
+                <td>
+                    <input id="admin" type="checkbox" />
+                </td>
+                <td>
+                    <input id="approver" type="checkbox" />
+                </td>
+                <td>
+                    <input id="user" type="checkbox" />
+                </td>
+                <td>
+                    <button class="input-button" type="submit">Submit Changes</button>
+                </td>
+                </form>
+            </tr>
+        </tbody>
     </table>
-  </div>
+</div>
