@@ -47,7 +47,7 @@ public class Approval
     public int Id { get; set; }
     public bool Approved { get; set; }
     public DateTime Timestamp { get; set; }
-    public DateTime Expires { get; set; }
+    public DateTime? Expires { get; set; }
     public required string RejectedReason { get; set; }
 
     public int RequestId { get; set; }

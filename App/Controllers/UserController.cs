@@ -36,11 +36,11 @@ public class UserController : Controller
                             select new RequestsDto
                             {
                                 Title = d.Title,
-                                Approved = a!= null ? a.Approved : false,
-                                Reason = a != null ? a.RejectedReason : "Pending",
+                                Approved = a!= null ? a.Approved : null,
+                                Reason = a != null ? (a.Approved ? "" : a.RejectedReason) : "Pending",
                                 ReqTime = r.Timestamp,
-                                AppTime = a.Timestamp != null ? a.Timestamp.ToString("dd/MM/yyyy HH:mm:ss") : "Pending Approval",
-                                AppExp = a.Expires != null ? a.Expires.ToString("dd/MM/yyyy HH:mm:ss") : String.Empty,
+                                AppTime = a != null ? a.Timestamp: null,
+                                AppExp = a != null ? a.Expires: null,
                                 ViewDataset = r.Approval != null ? String.Empty : "disabled" 
                             }).ToList();
         
