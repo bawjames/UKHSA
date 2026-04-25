@@ -71,7 +71,7 @@ public class UserController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> RequestDocument(int DatasetId, int AccessLevel, string Purpose)
+    public async Task<IActionResult> RequestDocument(int DatasetId, string Purpose)
     {
         var userId = _userManager.GetUserId(User);
         var dataset = await _context.Datasets.FindAsync(DatasetId);
@@ -86,7 +86,7 @@ public class UserController : Controller
         await _context.SaveChangesAsync();
         
 
-        if (AccessLevel == 0)
+        if (dataset.AccessLevel == 0)
         {
             var approval = new Approval
             {
