@@ -39,14 +39,14 @@ public class UserController : Controller
                                 Id = r.Id,
                                 DatasetId = d.Id,
                                 AccessLevel = d.AccessLevel,
-                                
+
                                 Title = d.Title,
                                 Approved = a != null ? a.Approved : null,
                                 Reason = a != null ? (a.Approved ? "" : a.RejectedReason) : "Pending",
                                 ReqTime = r.Timestamp,
                                 AppTime = a != null ? a.Timestamp : null,
                                 AppExp = (a != null && a.Approved == true)? a.Expires : null,
-                                ViewDataset = (r.Approval.Approved != null && r.Approval.Approved != false) ? String.Empty : "disabled"
+                                ViewDataset = (a != null && a.Approved == true) ? String.Empty : "disabled"
                             }).ToList();
 
         int totalItems = UserRequests.Count();
@@ -104,9 +104,10 @@ public class UserController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Extension(int RequestId, int DatasetId, int AccessLevel)
+    public async Task<IActionResult> Extension(int RequestId, int DatasetId)
     {
         var userId = _userManager.GetUserId(User);
+
         var dataset = await _context.Datasets.FindAsync(DatasetId);
 
         var request = new Request
@@ -120,16 +121,17 @@ public class UserController : Controller
         await _context.SaveChangesAsync();
         
 
-        if (AccessLevel == 0)
+        if (dataset.AccessLevel == 0)
         {
             var approval = new Approval
             {
-                Request = request,
+                RequestId = request.Id,
                 Approved = true,
                 RejectedReason = "",
                 Timestamp = DateTime.UtcNow,
-                Expires = DateTime.UtcNow.AddMonths(6)
+                Expires = DateTime.UtcNow.AddYears(1)
             };
+
             _context.Approvals.Add(approval);
             await _context.SaveChangesAsync();
         }
