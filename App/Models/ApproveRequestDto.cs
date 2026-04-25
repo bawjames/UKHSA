@@ -1,7 +1,7 @@
 namespace UKHSA.Models;
 using System.ComponentModel.DataAnnotations;
 
-class ApproveRequestDto
+public class ApproveRequestDto
 {
     public int User{ get; set; }
     public int Id { get; set; }
@@ -9,6 +9,7 @@ class ApproveRequestDto
     public required string Title {get; set;}
     [Required]
     public required string Username {get; set;}
+    public string? Reason {get; set;}
     [Required]
     public required DateTime Timestamp {get; set;}
 }
